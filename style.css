@@ -1,0 +1,44 @@
+body{
+	background: url(images/Background.jpg);
+}
+
+@font-face{
+	font-family: "Minecraft"
+	src: url=("fonts/Minecrafter.Reg.ttf");
+}
+
+.minecraft{
+	font-family: "Minecraft", sans-serif;
+}
+
+.center{
+	margin-left: 115px;
+	margin-right: 115px;
+	background: white;
+}
+
+.container{
+	background: white;
+}
+
+.button{
+	background-color: white;
+	border: 10px solid #008CBA;
+	transition-duration: 0.5s;
+	padding: 15px 32px;
+	cursor: pointer;
+}
+
+.button:hover{
+	background-color: #008CBA;
+}
+
+.Text{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
