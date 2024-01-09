@@ -2,11 +2,6 @@ body{
 	background: url(images/Background.jpg);
 }
 
-@font-face{
-	font-family: "Minecraft"
-	src: url=("fonts/Minecrafter.Reg.ttf");
-}
-
 .minecraft{
 	font-family: "Minecraft", sans-serif;
 }
