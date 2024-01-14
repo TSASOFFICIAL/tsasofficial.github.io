@@ -37,3 +37,13 @@ body{
   border-radius: 4px;
   box-sizing: border-box;
 }
+
+.left {
+  float: left;
+  width: 50%; /* The width is 20%, by default */
+}
+
+.right {
+  float: left;
+  width: 50%; /* The width is 20%, by default */
+}
