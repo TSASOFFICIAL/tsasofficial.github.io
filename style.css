@@ -109,7 +109,7 @@ body{
 	pointer-events: all;
 }
 
-.google_forced_me_to_do_this{
+.butt{
 	background-color: white;
 	border: 10px solid #008CBA;
 	transition-duration: 0.5s;
@@ -117,6 +117,6 @@ body{
 	cursor: pointer;
 }
 
-.google_forced_me_to_do_this:hover{
+.butt:hover{
 	background-color: #008CBA;
 }
