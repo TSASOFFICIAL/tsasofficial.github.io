@@ -29,82 +29,94 @@ body{
 }
 
 .Text{
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
 }
 
 .left {
-  float: left;
-  width: 50%; /* The width is 20%, by default */
+	float: left;
+	width: 50%; /* The width is 20%, by default */
 }
 
 .right {
-  float: left;
-  width: 50%; /* The width is 20%, by default */
+	float: left;
+	width: 50%; /* The width is 20%, by default */
 }
 
 *, *::after, *::before {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 .modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  transition: 200ms ease-in-out;
-  border: 1px solid black;
-  border-radius: 10px;
-  z-index: 10;
-  background-color: white;
-  width: 500px;
-  max-width: 80%;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) scale(0);
+	transition: 200ms ease-in-out;
+	border: 1px solid black;
+	border-radius: 10px;
+	z-index: 10;
+	background-color: white;
+	width: 500px;
+	max-width: 80%;
 }
 
 .modal.active {
-  transform: translate(-50%, -50%) scale(1);
+	transform: translate(-50%, -50%) scale(1);
 }
 
 .modal-header {
-  padding: 10px 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid black;
+	padding: 10px 15px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 1px solid black;
 }
 
 .modal-header .title {
-  font-size: 1.25rem;
-  font-weight: bold;
+	font-size: 1.25rem;
+	font-weight: bold;
 }
 
 .modal-header .close-button {
-  cursor: pointer;
-  border: none;
-  outline: none;
-  background: none;
-  font-size: 1.25rem;
-  font-weight: bold;
+	cursor: pointer;
+	border: none;
+	outline: none;
+	background: none;
+	font-size: 1.25rem;
+	font-weight: bold;
 }
 
 #overlay {
-  position: fixed;
-  opacity: 0;
-  transition: 200ms ease-in-out;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, .5);
-  pointer-events: none;
+	position: fixed;
+	opacity: 0;
+	transition: 200ms ease-in-out;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, .5);
+	pointer-events: none;
 }
 
 #overlay.active {
-  opacity: 1;
-  pointer-events: all;
+	opacity: 1;
+	pointer-events: all;
+}
+
+.google_forced_me_to_do_this{
+	background-color: white;
+	border: 10px solid #008CBA;
+	transition-duration: 0.5s;
+	padding: 7px 16px;
+	cursor: pointer;
+}
+
+.google_forced_me_to_do_this:hover{
+	background-color: #008CBA;
 }
