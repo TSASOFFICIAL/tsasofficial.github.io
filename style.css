@@ -90,7 +90,14 @@ body{
   background: none;
   font-size: 1.25rem;
   font-weight: bold;
+  background-color: white;
+  border: 10px solid #008CBA;
+  transition-duration: 0.5s;
+  padding: 15px 32px;
 }
+
+.close-button:hover{
+	background-color: #008CBA;
 
 .modal-body {
   padding: 10px 15px;
