@@ -18,7 +18,7 @@ body{
 
 .button{
 	background-color: white;
-	border: 5px solid #008CBA;
+	border: 10px solid #008CBA;
 	transition-duration: 0.5s;
 	padding: 15px 32px;
 	cursor: pointer;
@@ -111,7 +111,7 @@ body{
 
 .butt{
 	background-color: white;
-	border: 10px solid #008CBA;
+	border: 5px solid #008CBA;
 	transition-duration: 0.5s;
 	padding: 7px 16px;
 	cursor: pointer;
