@@ -1,8 +1,13 @@
 body{
 	background: url(images/Background.jpg);
 }
+
 .js-only{
 	display: none;
+}
+
+.show{
+  display: block;
 }
 
 .minecraft{
