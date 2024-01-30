@@ -7,7 +7,7 @@ body{
 }
 
 .show{
-  display: initial;
+  display: block;
 }
 
 .minecraft{
