@@ -1,6 +1,9 @@
 body{
 	background: url(images/Background.jpg);
 }
+.js-only{
+	display: none;
+}
 
 .minecraft{
 	font-family: "Minecraft", sans-serif;
