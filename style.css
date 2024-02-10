@@ -98,7 +98,8 @@ body{
 
 .modal-body{
 	margin-left: 5px;
-
+}
+	
 #overlay{
 	position: fixed;
 	opacity: 0;
