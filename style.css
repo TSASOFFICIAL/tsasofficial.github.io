@@ -118,6 +118,7 @@ body{
 }
 
 .butt{
+	margin-left: 5px;
 	background-color: white;
 	border: 5px solid #008CBA;
 	transition-duration: 0.5s;
