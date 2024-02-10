@@ -7,7 +7,7 @@ body{
 }
 
 .show{
-  display: block;
+	display: block;
 }
 
 .center{
@@ -97,7 +97,7 @@ body{
 }
 
 .modal-body{
-	margin-left: 5px;
+	margin-left: 10px;
 }
 	
 #overlay{
