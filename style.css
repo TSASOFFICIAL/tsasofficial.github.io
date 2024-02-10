@@ -113,7 +113,7 @@ body{
 }
 
 #overlay.active{
-	opacity: 1;
+	opacity: 1.5;
 	pointer-events: all;
 }
 
