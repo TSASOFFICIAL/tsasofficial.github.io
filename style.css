@@ -119,7 +119,7 @@ body{
 .butt{
 	background-color: white;
 	border: 5px solid #008CBA;
-	transition-duration: 0.5s;
+	transition-duration: 0.3s;
 	padding: 7px 16px;
 	cursor: pointer;
 }
