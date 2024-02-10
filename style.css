@@ -10,10 +10,6 @@ body{
   display: block;
 }
 
-.minecraft{
-	font-family: "Minecraft", sans-serif;
-}
-
 .center{
 	margin-left: 115px;
 	margin-right: 115px;
@@ -46,21 +42,21 @@ body{
 	box-sizing: border-box;
 }
 
-.left {
+.left{
 	float: left;
 	width: 50%; /* The width is 20%, by default */
 }
 
-.right {
+.right{
 	float: left;
 	width: 50%; /* The width is 20%, by default */
 }
 
-*, *::after, *::before {
+*, *::after, *::before{
 	box-sizing: border-box;
 }
 
-.modal {
+.modal{
 	position: fixed;
 	top: 50%;
 	left: 50%;
@@ -74,11 +70,11 @@ body{
 	max-width: 80%;
 }
 
-.modal.active {
+.modal.active{
 	transform: translate(-50%, -50%) scale(1);
 }
 
-.modal-header {
+.modal-header{
 	padding: 10px 15px;
 	display: flex;
 	justify-content: space-between;
@@ -86,12 +82,12 @@ body{
 	border-bottom: 1px solid black;
 }
 
-.modal-header .title {
+.modal-header .title{
 	font-size: 1.25rem;
 	font-weight: bold;
 }
 
-.modal-header .close-button {
+.modal-header .close-button{
 	cursor: pointer;
 	border: none;
 	outline: none;
@@ -100,7 +96,10 @@ body{
 	font-weight: bold;
 }
 
-#overlay {
+.modal-body{
+	margin-left: 5px;
+
+#overlay{
 	position: fixed;
 	opacity: 0;
 	transition: 200ms ease-in-out;
@@ -112,13 +111,12 @@ body{
 	pointer-events: none;
 }
 
-#overlay.active {
+#overlay.active{
 	opacity: 1;
 	pointer-events: all;
 }
 
 .butt{
-	margin-left: 5px;
 	background-color: white;
 	border: 5px solid #008CBA;
 	transition-duration: 0.5s;
