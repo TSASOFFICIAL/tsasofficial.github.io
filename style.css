@@ -54,10 +54,12 @@ body{
 
 .left1{
 	float: left;
+	background: white;
 }
 
 .right2{
 	float: right;
+	background: white;
 }
 
 *, *::after, *::before{
