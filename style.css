@@ -43,13 +43,13 @@ body{
 }
 
 .left{
-	margin-left: 115px;
-	margin-right: 115px;
+	float: left;
+	width: 50%;
 }
 
 .right{
-	margin-left: 115px;
-	margin-right: 115px;
+	float: right;
+	width: 50%;
 }
 
 *, *::after, *::before{
