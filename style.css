@@ -45,17 +45,11 @@ body{
 .left{
 	margin-left: 115px;
 	margin-right: 115px;
-	background: white;
-	float: left;
-	width: 50%; /* The width is 20%, by default */
 }
 
 .right{
 	margin-left: 115px;
 	margin-right: 115px;
-	background: white;
-	float: left;
-	width: 50%; /* The width is 20%, by default */
 }
 
 *, *::after, *::before{
