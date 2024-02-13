@@ -52,6 +52,14 @@ body{
 	width: 50%;
 }
 
+.left1{
+	float: left;
+}
+
+.right2{
+	float: right;
+}
+
 *, *::after, *::before{
 	box-sizing: border-box;
 }
