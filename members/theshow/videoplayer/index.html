@@ -1,0 +1,75 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+
+<head>  
+	<title>Video Player-GFG</title> 
+	<link rel="stylesheet"
+		href= 
+"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"> 
+	<link rel="stylesheet"
+		href="style.css"> 
+
+</head> 
+
+<body> 	
+	<!-- Video container -->
+	<div class="video-container"> 
+		<img src= 
+"https://media.geeksforgeeks.org/wp-content/uploads/20231020170918/Thumbnail-(1).jpg"
+			id="video-thumbnail"> 
+		<video id="video"> 
+			
+		<!-- Video source -->
+			<source
+				src= 
+"https://cdn.discordapp.com/attachments/1162130771939688519/1207171357784281088/RPReplay_Final1704491726.mov?ex=65e7e76f&is=65d5726f&hm=11ce4bc4b12418a540c97c320ff926f8e22bdb1b8c09364521cca33886ff3b65&"
+				type="video/mp4"> 
+		</video> 
+		
+		<!-- Controlers continer -->
+		<div class="controls"> 
+			
+		<!-- Left controller div -->
+			<div class="left"> 
+				<button id="skipminus-10"> 
+					<i class="fa-solid fa-backward"></i> 
+				</button> 
+				<button id="play-pause"> 
+					<i class="fa-solid fa-play"></i> 
+				</button> 
+				<button id="skip-10"> 
+					<i class="fa-solid fa-forward"></i> 
+				</button> 
+			</div> 
+			
+	<!-- div for progress bar -->
+			<div class="video-timer"> 
+				<span id="current-time">00:00</span> 
+				<span id="separator">/</span> 
+				<span id="max-duration">00:00</span> 
+			</div> 
+			<div class="playback-line"> 
+				<div class="progress-bar"></div> 
+
+			</div> 
+			
+			<!-- Right controller div -->
+			<div class="right"> 
+				<div class="volume-container"> 
+					<div id="mute"> 
+						<i class="fas fa-volume-up"></i> 
+					</div> 
+					<input type="range"
+						id="volume"
+						min="0"
+						max="1"
+						step="0.01"
+						value="1"> 
+				</div> 
+			</div> 
+		</div> 
+	</div> 
+	<script src="script.js"></script> 
+</body> 
+
+</html>
