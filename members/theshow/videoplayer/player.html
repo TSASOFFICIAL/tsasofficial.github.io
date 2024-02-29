@@ -15,17 +15,20 @@
 	<!-- Video container -->
 	<div class="video-container"> 
 		<img src= 
-"https://media.geeksforgeeks.org/wp-content/uploads/20231020170918/Thumbnail-(1).jpg"
+"https://yt3.googleusercontent.com/PyD7VwvJRsHyf0wC-5AxjATC6AhHzKLDlN1UaLM7IvWprWM98K44qNnWLHYJVIUVDC4j_iMU3Q=s176-c-k-c0x00ffffff-no-rj"
 			id="video-thumbnail"> 
 		<video id="video"> 
 			
 		<!-- Video source -->
-			<source
-				src= 
-"https://cdn.discordapp.com/attachments/1162130771939688519/1207171357784281088/RPReplay_Final1704491726.mov?ex=65e7e76f&is=65d5726f&hm=11ce4bc4b12418a540c97c320ff926f8e22bdb1b8c09364521cca33886ff3b65&"
+			<source id="vid"
 				type="video/mp4"> 
 		</video> 
-		
+		<script>
+			function rep() {
+				var GET = window.location.search.substring(1)
+				document.getElementById("vid").setAttribute("src", GET);
+      			}
+		</script>
 		<!-- Controlers continer -->
 		<div class="controls"> 
 			
