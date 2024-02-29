@@ -24,10 +24,8 @@
 				type="video/mp4"> 
 		</video> 
 		<script>
-			function rep() {
-				var GET = window.location.search.substring(1)
-				document.getElementById("vid").setAttribute("src", GET);
-      			}
+			var GET = window.location.search.substring(1)
+			document.getElementById("vid").setAttribute("src", GET);
 		</script>
 		<!-- Controlers continer -->
 		<div class="controls"> 
