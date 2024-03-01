@@ -25,17 +25,13 @@
 		</video> 
 		<script>
 			function onload() {
-				var source = window.location.search.substring(1);
-				document.getElementById("vid").setAttribute("src", source);
-				console.log("1: " + VID);
-				console.log("2: " + window.VID);
-				console.log("3: " + parent.VID);
-				console.log("4: " + source);
 				window.addEventListener('message', function(event)
 						{
-						console.log("Message received from the parent: " + event.data); // Message received from parent
+							console.log("Message received from the parent: " + event.data); // Message received from parent
 						}
 				);
+				var source = event.data;
+				document.getElementById("vid").setAttribute("src", source);
 			}
 		</script>
 		<!-- Controlers continer -->
