@@ -28,10 +28,10 @@
 				window.addEventListener('message', function(event)
 						{
 							console.log("Message received from the parent: " + event.data); // Message received from parent
+							var source = event.data;
+							document.getElementById("vid").setAttribute("src", source);
 						}
 				);
-				var source = event.data;
-				document.getElementById("vid").setAttribute("src", source);
 			}
 		</script>
 		<!-- Controlers continer -->
