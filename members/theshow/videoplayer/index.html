@@ -16,6 +16,8 @@
     </div>
     <script>
       var VID = window.location.search.substring(1)
+      const message = document.querySelector(#message).value;
+      const iframe = document.querySelector("iframe");
       iframe.contentWindow.postMessage(VID);
       console.log("Video is located in: " + VID)
     </script>
