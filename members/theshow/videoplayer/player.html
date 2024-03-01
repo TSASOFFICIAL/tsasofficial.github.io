@@ -11,7 +11,7 @@
 
 </head> 
 
-<body> 	
+<body onload="onload()"> 	
 	<!-- Video container -->
 	<div class="video-container"> 
 		<img src= 
@@ -24,16 +24,18 @@
 				type="video/mp4"> 
 		</video> 
 		<script>
-			var source = parent.VID
-			document.getElementById("vid").setAttribute("src", source);
-			console.log(VID);
-			console.log(window.source)
-			console.log(parent.source)
-			window.addEventListener('message', function(event)
-					{
+			function onload() {
+				var source = parent.VID
+				document.getElementById("vid").setAttribute("src", source);
+				console.log(VID);
+				console.log(window.source)
+				console.log(parent.source)
+				window.addEventListener('message', function(event)
+						{
 						console.log("Message received from the parent: " + event.data); // Message received from parent
-					}
-			);
+						}
+				);
+			}
 		</script>
 		<!-- Controlers continer -->
 		<div class="controls"> 
