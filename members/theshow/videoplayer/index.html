@@ -17,9 +17,8 @@
     <script>
       function load() {
         var VID = window.location.search.substring(1)
-        const message = document.querySelector(VID).value;
         const iframe = document.querySelector("iframe");
-        iframe.contentWindow.postMessage(message);
+        iframe.contentWindow.postMessage(VID);
         console.log("Video is located in: " + VID)
       }
     </script>
