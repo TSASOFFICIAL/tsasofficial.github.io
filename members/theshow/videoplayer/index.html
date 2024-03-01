@@ -15,11 +15,13 @@
       <br>
     </div>
     <script>
-      var VID = window.location.search.substring(1)
-      const message = document.querySelector(VID).value;
-      const iframe = document.querySelector("iframe");
-      iframe.contentWindow.postMessage(message);
-      console.log("Video is located in: " + VID)
+      function load() {
+        var VID = window.location.search.substring(1)
+        const message = document.querySelector(VID).value;
+        const iframe = document.querySelector("iframe");
+        iframe.contentWindow.postMessage(message);
+        console.log("Video is located in: " + VID)
+      }
     </script>
   </body>
 </html>
