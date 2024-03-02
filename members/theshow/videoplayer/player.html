@@ -7,8 +7,19 @@
 		href= 
 "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"> 
 	<link rel="stylesheet"
-		href="style.css"> 
-
+		href="style.css">
+	
+	<script>
+		function onload() {
+			window.addEventListener('message', function(event){
+				acorn = event.data;
+				console.log("Message received from the parent: " + event.data); console.log("hi " + acorn);
+				document.getElementById("vid").setAttribute("src", acorn);
+			}
+					       );
+		}
+	</script>
+	
 </head> 
 
 <body onload="onload()"> 	
@@ -20,16 +31,6 @@
 		<video id="video">
 			<source id="vid" src="null"
 				type="video/mp4">
-			<script>
-				function onload() {
-					window.addEventListener('message', function(event){
-						acorn = event.data;
-						console.log("Message received from the parent: " + event.data); console.log("hi " + acorn);
-						document.getElementById("vid").setAttribute("src", acorn);
-					}
-							       );
-				}
-			</script>
 		</video> 
 		<!-- Controlers continer -->
 		<div class="controls"> 
