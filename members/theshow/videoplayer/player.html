@@ -24,16 +24,17 @@
 				type="video/mp4"> 
 		</video> 
 		<script>
+			
+			function onload() {
+				window.addEventListener('message', function hi()
+				);
+			};
 			function hi()
 				{
 					acorn = event.data;
 					console.log("Message received from the parent: " + event.data); console.log("hi " + acorn);
 					document.getElementById("vid").setAttribute("src", acorn);
-				}
-			function onload() {
-				window.addEventListener('message', function hi()
-				);
-			}
+				};
 		</script>
 		<!-- Controlers continer -->
 		<div class="controls"> 
