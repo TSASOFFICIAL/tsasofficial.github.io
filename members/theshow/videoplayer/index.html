@@ -15,6 +15,15 @@
       <br>
     </div>
     <script>
+      const loadvid = document.getElementById("loadvid");
+      button1.addEventListener("click", function()
+                               {
+                                 var VID = window.location.search.substring(1);
+                                 const iframe = document.querySelector("iframe");
+                                 iframe.contentWindow.postMessage(VID);
+                                 console.log("Video is located in: " + VID);
+                               }
+                              );
       function load() {
         var VID = window.location.search.substring(1);
         const iframe = document.querySelector("iframe");
