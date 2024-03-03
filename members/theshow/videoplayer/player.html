@@ -10,14 +10,15 @@
 		href="style.css">
 	
 	<script>
+		var acorn;
 		function onload() {
 			window.addEventListener('message', function(event){
 				acorn = event.data;
 				console.log("Message received from the parent: " + event.data); console.log("hi " + acorn);
-				document.getElementById("vid").setAttribute("src", event.data);
 			}
 					       );
 		}
+		document.getElementById("vid").setAttribute("src", acorn);
 	</script>
 	
 </head> 
