@@ -21,10 +21,10 @@
 				type="video/mp4">
 			<script>
 				function onload() {
-					window.addEventListener('message', function(event){
+					window.addEventListener('message', function(event) {
 						acorn = event.data;
 						console.log("Message received from the parent: " + event.data);
-						document.getElementById("vid").setAttribute("src", acorn);
+						document.getElementsById("vid").setAttribute("src", acorn);
 					}
 							       );
 				}
