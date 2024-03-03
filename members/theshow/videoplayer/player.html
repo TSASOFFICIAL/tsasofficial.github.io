@@ -10,10 +10,9 @@
 		href="style.css">
 	
 	<script>
-		var acorn;
 		function onload() {
 			window.addEventListener('message', function(event){
-				acorn = event.data;
+				globalThis.acorn = event.data;
 				console.log("Message received from the parent: " + event.data);
 			}
 					       );
