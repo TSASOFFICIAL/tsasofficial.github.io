@@ -25,9 +25,11 @@
 						acorn = event.data;
 						console.log("Message received from the parent: " + event.data);
 						document.getElementsById("vid").setAttribute("src", acorn);
+						console.log("temp1 " + window.location.search.substring(1));
 					}
 							       );
 				}
+				console.log("temp2 " + window.location.search.substring(1));
 			</script>
 		</video> 
 		<!-- Controlers continer -->
