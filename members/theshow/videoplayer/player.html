@@ -21,15 +21,9 @@
 				type="video/mp4">
 			<script>
 				function onload() {
-					window.addEventListener('message', function(event) {
-						acorn = event.data;
-						console.log("Message received from the parent: " + event.data);
-						document.getElementsById("vid").setAttribute("src", acorn);
-						console.log("temp1 " + window.location.search.substring(1));
-					}
-							       );
+					var VidId = parent.window.location.search.substring(1);
+					document.getElementsById("vid").setAttribute("src", VidId);
 				}
-				console.log("temp2 " + parent.window.location.search.substring(1));
 			</script>
 		</video> 
 		<!-- Controlers continer -->
