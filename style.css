@@ -27,10 +27,12 @@ body{
 	transition-duration: 0.5s;
 	padding: 15px 32px;
 	cursor: pointer;
+	border-radius: 5px;
 }
 
 .button:hover{
 	background-color: #008CBA;
+	border-radius: 5px;
 }
 
 .Text{
@@ -134,10 +136,12 @@ body{
 	transition-duration: 0.3s;
 	padding: 7px 16px;
 	cursor: pointer;
+	border-radius: 5px;
 }
 
 .butt:hover{
 	background-color: #008CBA;
+	border-radius: 5px;
 }
 
 .title_font{
