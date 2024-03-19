@@ -14,6 +14,7 @@ body{
 	margin-left: 115px;
 	margin-right: 115px;
 	background: white;
+	border-radius: 5px;
 }
 
 .container{
