@@ -138,3 +138,15 @@ body{
 .butt:hover{
 	background-color: #008CBA;
 }
+
+.title_font{
+  font-family: "Angkor", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.normal_font{
+  font-family: "Belanosima", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
