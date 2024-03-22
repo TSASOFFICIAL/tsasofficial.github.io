@@ -3,6 +3,10 @@
     <title>TSAS Official</title>
     <link rel="stylesheet" type="text/css" href="../style.css">
     <link rel="shortcut icon" type="image/png" href="../images/favicon.png">
+    <script defer src="../popupscript/script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Angkor&family=Belanosima&display=swap" rel="stylesheet">
     <script> 
       function rep() { 
           document.body.innerHTML 
@@ -13,35 +17,56 @@
   </head>
   <body onload = "rep()">
     <div class="center">
-      <font face = "Verdana" size = "4"><a href="../"><button class="button button">Logout</button></a></font>
+      <a href="../"><button class="button button"><div class="normal_font"><font size = "4">Logout</font></div></button></a>
       <center>
-        <font face = "Verdana" size = "6">Welcome</font><font face = "Verdana" size = "6"><script type="text/javascript">var GET = window.location.search.substring(1); document.write(GET);</script></font><noscript><font face = "Verdana" size = "6"> Non-Javascript User</font></noscript><font face = "Verdana" size = "6">!</font></font>
+        <div class="title_font">
+          <font size = "6">Welcome</font><font size = "6"><script type="text/javascript">var GET = window.location.search.substring(1); document.write(GET);</script></font><noscript><font size = "6"> Non-Javascript User</font></noscript><font size = "6">!</font></font>
+        </div>
         <br>
-        <font face = "Verdana" size = "5">Access all T.S.A.S.'s entertainment videos, shows, and more from this website!</font>
-        <br>
-        <br>
-        <br>
-        <font face = "Verdana" size = "4"><a href="https://www.youtube.com/@TSASOfficial69"><button class="button button">Official YT Channel</button></a></font>
-        <br>
-        <br>
-        <font face = "Verdana" size = "4"><a href="theshow/videoplayer?../../../videos/Spider-Cam_Vol.1.mp4"><button class="button button">Spider-Cam</button></a></font>
+        <div class="normal_font">
+          <font size = "5">Access all T.S.A.S.'s entertainment videos, shows, and more from this website!</font>
+        </div>
         <br>
         <br>
-        <font face = "Verdana" size = "4"><a href="https://docs.google.com/presentation/d/1A-6kDsY1SGxIovv1n3qO8nbjddv_se1tcVnEBwyg5pM/mobilepresent"><button class="button button">Teinfeld</button></a></font>
+        <br>
+        <a href="https://www.youtube.com/@TSASOfficial69"><button class="button button"><div class="normal_font"><font size = "4">Official YT Channel</font></div></button></a>
         <br>
         <br>
-        <font face = "Verdana" size = "4"><a href='theshow?'><button class="button button">Other Shows!</button></a></font>
+        <a href="theshow/videoplayer?../../../videos/Spider-Cam_Vol.1.mp4"><button class="button button"><div class="normal_font"><font size = "4">Spider-Cam</font></div></button></a>
         <br>
         <br>
-        <font face = "Verdana" size = "4"><a href='fanart?'><button class="button button">Fan Art</button></a></font>
+        <a href="https://docs.google.com/presentation/d/1A-6kDsY1SGxIovv1n3qO8nbjddv_se1tcVnEBwyg5pM/mobilepresent"><button class="button button"><div class="normal_font"><font size = "4">Teinfeld</font></div></button></a>
         <br>
         <br>
-        <font face = "Verdana" size = "4"><a href='newsletter'><button class="button button">Sign-Up for our Newsletter!</button></a></font>
+        <a href='theshow?'><button class="button button"><div class="normal_font"><font size = "4">Other Shows!</font></div></button></a>
+        <br>
+        <br>
+        <a href='fanart?'><button class="button button"><div class="normal_font"><font size = "4">Fan Art</font></div></button></a>
+        <br>
+        <br>
+        <a href='newsletter'><button class="button button"><div class="normal_font"><font size = "4">Sign-Up for our Newsletter!</font></div></button></a>
         <br>
         <br>
       </center>
-      <font face = "Verdana" size = "1">T.S.A.S. was originally made by Eli, Kyle, Christian, and Bobby.</font>
-      <font face = "Verdana" size = "1">Website made with love and care by Dominic!</font>
+      <div class="modal" id="modal">
+        <div class="modal-header">
+          <div class="title_font">Privacy Notice</div>
+          <button data-close-button class="close-button">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="normal_font">
+            <font size = "3">This site is using your name for display puposes only when you don't sign-in with Google. Your password will be stored in our database for logging in ONLY.</font>
+          </div>
+          <br>
+        </div>
+      </div>
+      <div id="overlay"></div>
+      <div class="normal_font">
+        <button data-modal-target="#modal" class="butt"><div class="normal_font"><font size = "4">Privacy Notice</font></div></button>
+        <font size = "1">T.S.A.S. was originally made by Eli, Kyle, Christian, and Bobby.</font>
+        <font size = "1">Website made with love and care by Dominic!</font>
+        <a href="../privacypolicy"><font size = "1">Our Privacy Policy</font></a>
+      </div>
       <br>
     </div>
   </body>
