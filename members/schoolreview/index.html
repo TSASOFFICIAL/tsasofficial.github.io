@@ -13,18 +13,18 @@
       <center>
         <div class="title_font">
           <font size = "6">Today - </font><font id="Month" size = "6"></font>
+          <script>
+            const currentDate = new Date(); // Get the current date
+            const currentMonth = currentDate.getMonth(); // Get the current month (0-11)
+            const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            document.getElementById("Month").innerHTML = monthNames[currentMonth]; // Display the current month
+          </script>
+          <font id="Day" size = "6"></font>
+          <script>
+            const currentDay = currentDate.getDate();
+            document.getElementById("Day").innerHTML = currentDay;
+          </script>
         </div>
-        <script>
-          const currentDate = new Date(); // Get the current date
-          const currentMonth = currentDate.getMonth(); // Get the current month (0-11)
-          const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-          document.getElementById("Month").innerHTML = monthNames[currentMonth]; // Display the current month
-        </script>
-        <font id="Day" size = "6"></font>
-        <script>
-          const currentDay = currentDate.getDate();
-          document.getElementById("Day").innerHTML = currentDay;
-        </script>
         <br>
         <div class="normal_font">
           <font size = "5">School didn't start/end yet.</font>
