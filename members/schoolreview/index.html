@@ -42,8 +42,7 @@
           <font id="Day2" size = "6"></font>
           <script>
             let yesterday2 = new Date(currentDate);
-            yesterday2.setDate(currentDate.getDate() - 1);
-            let dayNumber = yesterday2.getDate();
+            let dayNumber = yesterday2.getDate(currentDate.getDate() - 1);
             document.getElementById("Day2").innerHTML = dayNumber;
           </script>
         </div>
