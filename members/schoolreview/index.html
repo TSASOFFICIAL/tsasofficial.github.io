@@ -15,16 +15,16 @@
           <font size = "6">Today - </font><font id="Month" size = "6"><font size = "6"> </font></font><font id="Day" size = "6"></font>
         </div>
         <script>
+          const currentDate = new Date();
+          const day = currentDate.getDate();
+          document.getElementById("Day").innerHTML = day;
+        </script>
+        <script>
           const currentDate = new Date(); // Get the current date
           const currentMonth = currentDate.getMonth(); // Get the current month (0-11)
           const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
           document.getElementById("Month").innerHTML = monthNames(currentMonth); // Display the current month
-        </script>
-        <script>
-          const currentDate = new Date();
-          const day = currentDate.getDate();
-          document.getElementById("Day").innerHTML = day;
         </script>
         <br>
         <div class="normal_font">
