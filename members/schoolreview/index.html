@@ -33,7 +33,16 @@
         <br>
         <br>
         <div class="title_font">
-          <font size = "6">Yesterday - 5/5/24</font>
+          <font size = "6">Yesterday - </font><font id="Month2" size = "6"></font>
+          <script>
+            const yesterday = new Date(currentDate.setDate(currentDate.getDate() - 1));
+            const yesterdayMonth = yesterday.getMonth();
+            document.getElementById("Month2").innerHTML = yesterdayMonth + 1;
+          </script>
+          <font id="Day2" size = "6"></font>
+          <script>
+            document.getElementById("Day2").innerHTML = currentDay - 1;
+          </script>
         </div>
         <br>
         <div class="normal_font">
