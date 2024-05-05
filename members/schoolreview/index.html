@@ -12,12 +12,12 @@
       <a href="../welcome"><button class="button button"><div class="normal_font"><font size = "4">Back</font></div></button></a>
       <center>
         <div class="title_font">
-          <font size = "6">Today - </font><font id="today" size = "6"></font>
+          <font size = "6">Today</font><font id="today" size = "6"></font>
         </div>
         <script>
           var now = new Date();
           var datetime = now.toLocaleString();
-          document.getElementById("today").innerHTML = datetime;
+          document.getElementById("today").innerHTML = " - "datetime;
         </script>
         <br>
         <div class="normal_font">
