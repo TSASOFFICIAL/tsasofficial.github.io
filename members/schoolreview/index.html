@@ -15,7 +15,9 @@
           <font size = "6">Today - </font><font id="today" size = "6"></font>
         </div>
         <script>
-          document.getElementById("today").innerHTML = Date();
+          var now = new Date();
+          var datetime = now.toLocaleString();
+          document.getElementById("today").innerHTML = datetime;
         </script>
         <br>
         <div class="normal_font">
