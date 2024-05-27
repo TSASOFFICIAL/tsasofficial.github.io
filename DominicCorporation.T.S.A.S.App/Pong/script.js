@@ -45,6 +45,38 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('gameContainer').style.display = 'none';
         // Reset the game state if needed
     });
+
+    // Define a function to reset the game state
+    function resetGame() {
+        // Reset player scores
+        player1.score = 0;
+        player2.score = 0;
+
+        // Reset ball position and speed
+        resetBall();
+
+        // Stop the game loop if it's running
+        cancelAnimationFrame(gameLoop);
+
+        // Reset paddle positions
+        player1.y = canvas.height / 2 - paddleHeight / 2;
+        player2.y = canvas.height / 2 - paddleHeight / 2;
+
+        // Reset player movements
+        player1.dy = 0;
+        player2.dy = 0;
+    }
+
+    // Inside the event listener for the back button
+    document.getElementById('backButton').addEventListener('click', () => {
+        console.log('Back to Menu button clicked');
+        resetGame(); // Reset the game state
+        document.getElementById('menu').style.display = 'flex';
+        document.getElementById('gameContainer').style.display = 'none';
+    });
+
+    // Inside the event listener for starting the game loop
+    gameLoop = requestAnimationFrame(gameLoop); // Clear any existing game loop
     
     let isTwoPlayer = false;
 
