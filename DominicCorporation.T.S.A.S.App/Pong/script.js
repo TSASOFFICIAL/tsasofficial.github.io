@@ -38,6 +38,14 @@ document.addEventListener('DOMContentLoaded', () => {
         color: '#fff'
     };
 
+    // Inside the event listener for the back button
+    document.getElementById('backButton').addEventListener('click', () => {
+        console.log('Back to Menu button clicked');
+        document.getElementById('menu').style.display = 'flex';
+        document.getElementById('gameContainer').style.display = 'none';
+        // Reset the game state if needed
+    });
+    
     let isTwoPlayer = false;
 
     function drawRect(x, y, width, height, color) {
