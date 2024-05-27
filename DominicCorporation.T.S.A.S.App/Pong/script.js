@@ -6,6 +6,7 @@ let ballX = 400, ballY = 200, ballSpeedX = 5, ballSpeedY = 4;
 let paddleHeight = 100, paddleWidth = 10;
 let upPressed = false, downPressed = false, wPressed = false, sPressed = false;
 let gameMode = '';
+let aiSpeed = 3; // AI speed is slower than ball speed
 
 function startGame(mode) {
     gameMode = mode;
@@ -27,6 +28,7 @@ function goToMenu() {
 function resetGame() {
     player1Score = 0;
     player2Score = 0;
+    updateScore();
     resetBall();
 }
 
@@ -80,9 +82,9 @@ function movePaddles() {
         if (downPressed && player2Y < canvas.height - paddleHeight) player2Y += 6;
     } else {
         if (ballY > player2Y + paddleHeight / 2 && player2Y < canvas.height - paddleHeight) {
-            player2Y += 6;
+            player2Y += aiSpeed;
         } else if (ballY < player2Y + paddleHeight / 2 && player2Y > 0) {
-            player2Y -= 6;
+            player2Y -= aiSpeed;
         }
     }
 }
@@ -120,7 +122,7 @@ function keyDownHandler(e) {
 
 function keyUpHandler(e) {
     if (e.key === 'ArrowUp') upPressed = false;
-    if (e.key === 'ArrowDown') downPressed = false;
+    if (e.key === 'ArrowDown') upPressed = false;
     if (e.key === 'w') wPressed = false;
     if (e.key === 's') sPressed = false;
 }
