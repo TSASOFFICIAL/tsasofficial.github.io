@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     let isTwoPlayer = false;
-    let gameLoop;
+    let gameLoop; // Declare gameLoop here
 
     function drawRect(x, y, width, height, color) {
         context.fillStyle = color;
@@ -202,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
             player1.dy = 6;
         }
         if (isTwoPlayer) {
-                        if (e.key === 'w') {
+            if (e.key === 'w') {
                 player2.dy = -6;
             } else if (e.key === 's') {
                 player2.dy = 6;
