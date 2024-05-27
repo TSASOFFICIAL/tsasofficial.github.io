@@ -23,6 +23,8 @@ function startGame(mode) {
 function goToMenu() {
     document.getElementById('menu').style.display = 'block';
     document.getElementById('game').style.display = 'none';
+    window.removeEventListener('keydown', keyDownHandler);
+    window.removeEventListener('keyup', keyUpHandler);
 }
 
 function resetGame() {
@@ -122,7 +124,7 @@ function keyDownHandler(e) {
 
 function keyUpHandler(e) {
     if (e.key === 'ArrowUp') upPressed = false;
-    if (e.key === 'ArrowDown') upPressed = false;
+    if (e.key === 'ArrowDown') downPressed = false;
     if (e.key === 'w') wPressed = false;
     if (e.key === 's') sPressed = false;
 }
