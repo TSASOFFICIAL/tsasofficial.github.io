@@ -198,8 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
-});
-
+    
     // Define a function to reset the game state
     function resetGame() {
         // Reset player scores
@@ -231,3 +230,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Inside the event listener for starting the game loop
     gameLoop = requestAnimationFrame(gameLoop); // Clear any existing game loop
+});
