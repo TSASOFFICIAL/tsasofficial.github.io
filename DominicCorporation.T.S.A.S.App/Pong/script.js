@@ -7,7 +7,7 @@ canvas.height = 600;
 
 const paddleWidth = 10, paddleHeight = 100, ballSize = 10;
 
-const player = {
+const player1 = {
     x: 0,
     y: canvas.height / 2 - paddleHeight / 2,
     width: paddleWidth,
@@ -17,13 +17,13 @@ const player = {
     score: 0
 };
 
-const ai = {
+const player2 = {
     x: canvas.width - paddleWidth,
     y: canvas.height / 2 - paddleHeight / 2,
     width: paddleWidth,
     height: paddleHeight,
     color: '#fff',
-    dy: 4,
+    dy: 0,
     score: 0
 };
 
@@ -36,6 +36,8 @@ const ball = {
     dy: 4,
     color: '#fff'
 };
+
+let isTwoPlayer = false;
 
 function drawRect(x, y, width, height, color) {
     context.fillStyle = color;
@@ -57,23 +59,32 @@ function drawText(text, x, y, color) {
 }
 
 function movePaddles() {
-    player.y += player.dy;
-    if (player.y < 0) {
-        player.y = 0;
-    } else if (player.y + paddleHeight > canvas.height) {
-        player.y = canvas.height - paddleHeight;
+    player1.y += player1.dy;
+    if (player1.y < 0) {
+        player1.y = 0;
+    } else if (player1.y + paddleHeight > canvas.height) {
+        player1.y = canvas.height - paddleHeight;
     }
 
-    if (ball.y < ai.y + ai.height / 2) {
-        ai.y -= ai.dy;
+    if (isTwoPlayer) {
+        player2.y += player2.dy;
+        if (player2.y < 0) {
+            player2.y = 0;
+        } else if (player2.y + paddleHeight > canvas.height) {
+            player2.y = canvas.height - paddleHeight;
+        }
     } else {
-        ai.y += ai.dy;
-    }
+        if (ball.y < player2.y + player2.height / 2) {
+            player2.y -= 4;
+        } else {
+            player2.y += 4;
+        }
 
-    if (ai.y < 0) {
-        ai.y = 0;
-    } else if (ai.y + paddleHeight > canvas.height) {
-        ai.y = canvas.height - paddleHeight;
+        if (player2.y < 0) {
+            player2.y = 0;
+        } else if (player2.y + paddleHeight > canvas.height) {
+            player2.y = canvas.height - paddleHeight;
+        }
     }
 }
 
@@ -85,26 +96,26 @@ function moveBall() {
         ball.dy *= -1;
     }
 
-    let playerOrAI = (ball.x < canvas.width / 2) ? player : ai;
+    let playerOrAI = (ball.x < canvas.width / 2) ? player1 : player2;
 
     if (collision(ball, playerOrAI)) {
         ball.dx *= -1;
     }
 
     if (ball.x - ball.size < 0) {
-        ai.score++;
+        player2.score++;
         resetBall();
     } else if (ball.x + ball.size > canvas.width) {
-        player.score++;
+        player1.score++;
         resetBall();
     }
 }
 
 function collision(b, p) {
-    return b.x - b.size < p.x + p.width &&
-        b.x + b.size > p.x &&
-        b.y - b.size < p.y + p.height &&
-        b.y + b.size > p.y;
+    return b.x - b.size < p.x + p.width && 
+           b.x + b.size > p.x && 
+           b.y - b.size < p.y + p.height && 
+           b.y + b.size > p.y;
 }
 
 function resetBall() {
@@ -121,12 +132,12 @@ function update() {
 function draw() {
     context.clearRect(0, 0, canvas.width, canvas.height);
 
-    drawRect(player.x, player.y, player.width, player.height, player.color);
-    drawRect(ai.x, ai.y, ai.width, ai.height, ai.color);
+    drawRect(player1.x, player1.y, player1.width, player1.height, player1.color);
+    drawRect(player2.x, player2.y, player2.width, player2.height, player2.color);
     drawBall(ball.x, ball.y, ball.size, ball.color);
-
-    drawText(player.score, canvas.width / 4, canvas.height / 5, '#fff');
-    drawText(ai.score, 3 * canvas.width / 4, canvas.height / 5, '#fff');
+    
+    drawText(player1.score, canvas.width / 4, canvas.height / 5, '#fff');
+    drawText(player2.score, 3 * canvas.width / 4, canvas.height / 5, '#fff');
 }
 
 function gameLoop() {
@@ -135,18 +146,42 @@ function gameLoop() {
     requestAnimationFrame(gameLoop);
 }
 
+document.getElementById('playAI').addEventListener('click', () => {
+    isTwoPlayer = false;
+    document.getElementById('menu').style.display = 'none';
+    document.getElementById('gameContainer').style.display = 'flex';
+    gameLoop();
+});
+
+document.getElementById('playHuman').addEventListener('click', () => {
+    isTwoPlayer = true;
+    document.getElementById('menu').style.display = 'none';
+    document.getElementById('gameContainer').style.display = 'flex';
+    gameLoop();
+});
+
 document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowUp') {
-        player.dy = -6;
+        player1.dy = -6;
     } else if (e.key === 'ArrowDown') {
-        player.dy = 6;
+        player1.dy = 6;
+    }
+    if (isTwoPlayer) {
+        if (e.key === 'w') {
+            player2.dy = -6;
+        } else if (e.key === 's') {
+            player2.dy = 6;
+        }
     }
 });
 
 document.addEventListener('keyup', (e) => {
     if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
-        player.dy = 0;
+        player1.dy = 0;
+    }
+    if (isTwoPlayer) {
+        if (e.key === 'w' || e.key === 's') {
+        player2.dy = 0;
+        }
     }
 });
-
-gameLoop();
