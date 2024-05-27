@@ -38,15 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
         color: '#fff'
     };
 
-    // Inside the event listener for the back button
-    document.getElementById('backButton').addEventListener('click', () => {
-        console.log('Back to Menu button clicked');
-        document.getElementById('menu').style.display = 'flex';
-        document.getElementById('gameContainer').style.display = 'none';
-        // Reset the game state if needed
-    });
-    
     let isTwoPlayer = false;
+    let gameLoop;
 
     function drawRect(x, y, width, height, color) {
         context.fillStyle = color;
@@ -135,71 +128,6 @@ document.addEventListener('DOMContentLoaded', () => {
         ball.dx *= -1;
     }
 
-    function update() {
-        movePaddles();
-        moveBall();
-    }
-
-    function draw() {
-        context.clearRect(0, 0, canvas.width, canvas.height);
-
-        drawRect(player1.x, player1.y, player1.width, player1.height, player1.color);
-        drawRect(player2.x, player2.y, player2.width, player2.height, player2.color);
-        drawBall(ball.x, ball.y, ball.size, ball.color);
-        
-        drawText(player1.score, canvas.width / 4, canvas.height / 5, '#fff');
-        drawText(player2.score, 3 * canvas.width / 4, canvas.height / 5, '#fff');
-    }
-
-    function gameLoop() {
-        update();
-        draw();
-        requestAnimationFrame(gameLoop);
-    }
-
-    document.getElementById('playAI').addEventListener('click', () => {
-        console.log('Play Against AI button clicked');
-        isTwoPlayer = false;
-        document.getElementById('menu').style.display = 'none';
-        document.getElementById('gameContainer').style.display = 'flex';
-        gameLoop();
-    });
-
-    document.getElementById('playHuman').addEventListener('click', () => {
-        console.log('Play Against Human button clicked');
-        isTwoPlayer = true;
-        document.getElementById('menu').style.display = 'none';
-        document.getElementById('gameContainer').style.display = 'flex';
-        gameLoop();
-    });
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowUp') {
-            player1.dy = -6;
-        } else if (e.key === 'ArrowDown') {
-            player1.dy = 6;
-        }
-        if (isTwoPlayer) {
-            if (e.key === 'w') {
-                player2.dy = -6;
-            } else if (e.key === 's') {
-                player2.dy = 6;
-            }
-        }
-    });
-
-    document.addEventListener('keyup', (e) => {
-        if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
-            player1.dy = 0;
-        }
-        if (isTwoPlayer) {
-            if (e.key === 'w' || e.key === 's') {
-                player2.dy = 0;
-            }
-        }
-    });
-    
-    // Define a function to reset the game state
     function resetGame() {
         // Reset player scores
         player1.score = 0;
@@ -220,7 +148,46 @@ document.addEventListener('DOMContentLoaded', () => {
         player2.dy = 0;
     }
 
-    // Inside the event listener for the back button
+    function update() {
+        movePaddles();
+        moveBall();
+    }
+
+    function draw() {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+
+        drawRect(player1.x, player1.y, player1.width, player1.height, player1.color);
+        drawRect(player2.x, player2.y, player2.width, player2.height, player2.color);
+        drawBall(ball.x, ball.y, ball.size, ball.color);
+        
+        drawText(player1.score, canvas.width / 4, canvas.height / 5, '#fff');
+        drawText(player2.score, 3 * canvas.width / 4, canvas.height / 5, '#fff');
+    }
+
+    function gameLoop() {
+        update();
+        draw();
+        gameLoop = requestAnimationFrame(gameLoop); // Clear any existing game loop
+    }
+
+    document.getElementById('playAI').addEventListener('click', () => {
+        console.log('Play Against AI button clicked');
+        resetGame(); // Reset the game state
+        isTwoPlayer = false;
+        document.getElementById('menu').style.display = 'none';
+        document.getElementById('gameContainer').style.display = 'flex';
+        gameLoop();
+    });
+
+    document.getElementById('playHuman').addEventListener('click', () => {
+        console.log('Play Against Human button clicked');
+        resetGame(); // Reset the game state
+        isTwoPlayer = true;
+        document.getElementById('menu').style.display = 'none';
+        document.getElementById('gameContainer').style.display = 'flex';
+        gameLoop();
+    });
+
     document.getElementById('backButton').addEventListener('click', () => {
         console.log('Back to Menu button clicked');
         resetGame(); // Reset the game state
@@ -228,6 +195,29 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('gameContainer').style.display = 'none';
     });
 
-    // Inside the event listener for starting the game loop
-    gameLoop = requestAnimationFrame(gameLoop); // Clear any existing game loop
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowUp') {
+            player1.dy = -6;
+        } else if (e.key === 'ArrowDown') {
+            player1.dy = 6;
+        }
+        if (isTwoPlayer) {
+                        if (e.key === 'w') {
+                player2.dy = -6;
+            } else if (e.key === 's') {
+                player2.dy = 6;
+            }
+        }
+    });
+
+    document.addEventListener('keyup', (e) => {
+        if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+            player1.dy = 0;
+        }
+        if (isTwoPlayer) {
+            if (e.key === 'w' || e.key === 's') {
+                player2.dy = 0;
+            }
+        }
+    });
 });
