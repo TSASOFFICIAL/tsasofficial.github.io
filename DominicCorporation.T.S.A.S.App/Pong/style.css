@@ -1,0 +1,20 @@
+/* style.css */
+body, html {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin: 0;
+    background: #000;
+}
+
+#gameContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+}
+
+#pongCanvas {
+    border: 2px solid #fff;
+}
