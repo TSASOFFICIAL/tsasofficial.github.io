@@ -3,18 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ping Pong Game</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Pong Game</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div id="menu">
-        <h1>Ping Pong Game</h1>
-        <button id="playAI">Play Against AI</button>
-        <button id="playHuman">Play Against Human</button>
+        <h1>Pong Game</h1>
+        <button onclick="startGame('2player')">2 Player Mode</button>
+        <button onclick="startGame('ai')">AI Mode</button>
     </div>
-    <div id="gameContainer" style="display: none;">
-        <button id="backButton">Back to Menu</button>
-        <canvas id="pongCanvas"></canvas>
+    <div id="game" style="display: none;">
+        <canvas id="pongCanvas" width="800" height="400"></canvas>
+        <div id="scoreBoard">
+            <span id="player1Score">0</span> - <span id="player2Score">0</span>
+        </div>
+        <button onclick="goToMenu()">Back to Menu</button>
     </div>
     <script src="script.js"></script>
 </body>
