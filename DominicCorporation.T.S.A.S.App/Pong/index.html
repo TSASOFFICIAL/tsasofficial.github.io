@@ -4,10 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ping Pong Game</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="gameContainer">
+    <div id="menu">
+        <h1>Ping Pong Game</h1>
+        <button id="playAI">Play Against AI</button>
+        <button id="playHuman">Play Against Human</button>
+    </div>
+    <div id="gameContainer" style="display: none;">
         <canvas id="pongCanvas"></canvas>
     </div>
     <script src="script.js"></script>
