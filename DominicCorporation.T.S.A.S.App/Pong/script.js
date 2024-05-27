@@ -80,4 +80,114 @@ document.addEventListener('DOMContentLoaded', () => {
             if (ball.y < player2.y + player2.height / 2) {
                 player2.y -= aiSpeed * (Math.random() * 0.8 + 0.6); // Randomness to make AI less perfect
             } else {
-                player2.y += aiSpeed * (Math.random() * 0.8 + 0.6); // Randomness
+                player2.y += aiSpeed * (Math.random() * 0.8 + 0.6); // Randomness to make AI less perfect
+            }
+
+            if (player2.y < 0) {
+                player2.y = 0;
+            } else if (player2.y + paddleHeight > canvas.height) {
+                player2.y = canvas.height - paddleHeight;
+            }
+        }
+    }
+
+    function moveBall() {
+        ball.x += ball.dx;
+        ball.y += ball.dy;
+
+        if (ball.y + ball.size > canvas.height || ball.y - ball.size < 0) {
+            ball.dy *= -1;
+        }
+
+        let playerOrAI = (ball.x < canvas.width / 2) ? player1 : player2;
+
+        if (collision(ball, playerOrAI)) {
+            ball.dx *= -1;
+        }
+
+        if (ball.x - ball.size < 0) {
+            player2.score++;
+            resetBall();
+        } else if (ball.x + ball.size > canvas.width) {
+            player1.score++;
+            resetBall();
+        }
+    }
+
+    function collision(b, p) {
+        return b.x - b.size < p.x + p.width && 
+               b.x + b.size > p.x && 
+               b.y - b.size < p.y + p.height && 
+               b.y + b.size > p.y;
+    }
+
+    function resetBall() {
+        ball.x = canvas.width / 2;
+        ball.y = canvas.height / 2;
+        ball.dx *= -1;
+    }
+
+    function update() {
+        movePaddles();
+        moveBall();
+    }
+
+    function draw() {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+
+        drawRect(player1.x, player1.y, player1.width, player1.height, player1.color);
+        drawRect(player2.x, player2.y, player2.width, player2.height, player2.color);
+        drawBall(ball.x, ball.y, ball.size, ball.color);
+        
+        drawText(player1.score, canvas.width / 4, canvas.height / 5, '#fff');
+        drawText(player2.score, 3 * canvas.width / 4, canvas.height / 5, '#fff');
+    }
+
+    function gameLoop() {
+        update();
+        draw();
+        requestAnimationFrame(gameLoop);
+    }
+
+    document.getElementById('playAI').addEventListener('click', () => {
+        console.log('Play Against AI button clicked');
+        isTwoPlayer = false;
+        document.getElementById('menu').style.display = 'none';
+        document.getElementById('gameContainer').style.display = 'flex';
+        gameLoop();
+    });
+
+    document.getElementById('playHuman').addEventListener('click', () => {
+        console.log('Play Against Human button clicked');
+        isTwoPlayer = true;
+        document.getElementById('menu').style.display = 'none';
+        document.getElementById('gameContainer').style.display = 'flex';
+        gameLoop();
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowUp') {
+            player1.dy = -6;
+        } else if (e.key === 'ArrowDown') {
+            player1.dy = 6;
+        }
+        if (isTwoPlayer) {
+            if (e.key === 'w') {
+                player2.dy = -6;
+            } else if (e.key === 's') {
+                player2.dy = 6;
+            }
+        }
+    });
+
+    document.addEventListener('keyup', (e) => {
+        if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+            player1.dy = 0;
+        }
+        if (isTwoPlayer) {
+            if (e.key === 'w' || e.key === 's') {
+                player2.dy = 0;
+            }
+        }
+    });
+});
