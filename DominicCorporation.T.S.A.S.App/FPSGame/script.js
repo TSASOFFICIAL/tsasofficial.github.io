@@ -1,7 +1,3 @@
-import * as THREE from 'three';
-import { PointerLockControls } from 'three/examples/jsm/controls/PointerLockControls.js';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-
 let scene, camera, renderer;
 let controls, clock;
 let raycaster, mouse;
@@ -30,7 +26,7 @@ function init() {
     document.body.appendChild(renderer.domElement);
 
     // Set up controls
-    controls = new PointerLockControls(camera, document.body);
+    controls = new THREE.PointerLockControls(camera, document.body);
 
     document.addEventListener('click', () => {
         controls.lock();
@@ -97,7 +93,7 @@ function init() {
 
     // Load textures and add objects to the scene
     const textureLoader = new THREE.TextureLoader();
-    const boxTexture = textureLoader.load('path/to/texture.jpg');
+    const boxTexture = textureLoader.load('https://threejsfundamentals.org/threejs/resources/images/wall.jpg');
 
     createComplexObject(boxTexture);
 
@@ -151,7 +147,7 @@ function resetGame() {
     }
     // Recreate the initial objects
     const textureLoader = new THREE.TextureLoader();
-    const boxTexture = textureLoader.load('path/to/texture.jpg');
+    const boxTexture = textureLoader.load('https://threejsfundamentals.org/threejs/resources/images/wall.jpg');
     createComplexObject(boxTexture);
 }
 
