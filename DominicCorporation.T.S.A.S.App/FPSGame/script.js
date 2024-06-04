@@ -91,6 +91,11 @@ function init() {
     raycaster = new THREE.Raycaster();
     mouse = new THREE.Vector2();
 
+    // Add lighting to the scene
+    const light = new THREE.DirectionalLight(0xffffff, 1);
+    light.position.set(1, 1, 1).normalize();
+    scene.add(light);
+
     // Load textures and add objects to the scene
     const textureLoader = new THREE.TextureLoader();
     const boxTexture = textureLoader.load('https://threejsfundamentals.org/threejs/resources/images/wall.jpg');
@@ -102,6 +107,9 @@ function init() {
 
     // Adjust the canvas size when the window is resized
     window.addEventListener('resize', onWindowResize, false);
+
+    // Initialize clock for movement calculations
+    clock = new THREE.Clock();
 }
 
 function createComplexObject(texture) {
