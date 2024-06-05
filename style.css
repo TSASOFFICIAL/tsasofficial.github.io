@@ -155,3 +155,17 @@ body{
   font-weight: 400;
   font-style: normal;
 }
+
+.button-disabled{
+	background-color: white;
+	border: 10px solid #008CBA;
+	transition-duration: 0.5s;
+	padding: 15px 32px;
+	cursor: not-allowed;
+	border-radius: 5px;
+}
+
+.button-disabled:hover{
+	background-color: #008CBA;
+	border-radius: 5px;
+}
