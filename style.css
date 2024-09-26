@@ -49,12 +49,14 @@ body{
 	float: left;
 	width: 50%;
 	padding: 5px;
+	background: white;
 }
 
 .right{
 	float: right;
 	width: 50%;
 	padding: 5px;
+	background: white;
 }
 
 .left1{
