@@ -48,29 +48,13 @@ body{
 .left{
 	float: left;
 	width: 50%;
-	padding: 10px;
-	background: white;
-	border-radius: 5px;
+	padding: 8px;
 }
 
 .right{
 	float: right;
 	width: 50%;
-	padding: 10px;
-	background: white;
-	border-radius: 5px;
-}
-
-.left-inner{
-	float: left;
-	background: white;
-	width: 30%;
-}
-
-.right-inner{
-	float: left;
-	background: white;
-	width: 30%;
+	padding: 8px;
 }
 
 .left1{
