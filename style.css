@@ -48,15 +48,17 @@ body{
 .left{
 	float: left;
 	width: 50%;
-	padding: 5px;
+	padding: 10px;
 	background: white;
+	border-radius: 5px;
 }
 
 .right{
 	float: right;
 	width: 50%;
-	padding: 5px;
+	padding: 10px;
 	background: white;
+	border-radius: 5px;
 }
 
 .left1{
