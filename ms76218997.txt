@@ -1,5 +1,0 @@
-﻿{
-  "Description": "Domain ownership verification file for Microsoft 365 - place in the website root",
-  "Domain": "tsasofficial.github.io",
-  "Id": "6c17e387-5807-472a-b938-fcbb94dd22d9"
-}
