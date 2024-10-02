@@ -21,7 +21,7 @@
         <div class="title_font">
           <font size = "6">Welcome</font><font size = "6"><script type="text/javascript">
             const cookieObj = new URLSearchParams(document.cookie.replaceAll("&", "%26").replaceAll("; ","&"));
-            document.write(cookieObj.get("username"));</script></font><noscript><font size = "6"> Non-Javascript User</font></noscript><font size = "6">!</font></font>
+            document.write(document.cookie.replaceAll("username=",""));</script></font><noscript><font size = "6"> Non-Javascript User</font></noscript><font size = "6">!</font></font>
         </div>
         <br>
         <div class="normal_font">
