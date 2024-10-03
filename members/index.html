@@ -19,9 +19,24 @@
       <a href="../"><button class="button button"><div class="normal_font"><font size = "4">Logout</font></div></button></a>
       <center>
         <div class="title_font">
-          <font size = "6">Welcome</font><font size = "6"><script type="text/javascript">
-            const cookieObj = new URLSearchParams(document.cookie.replaceAll("&", "%26").replaceAll("; ","&"));
-            document.write(document.cookie.replaceAll("username=",""));</script></font><noscript><font size = "6"> Non-Javascript User</font></noscript><font size = "6">!</font></font>
+          <font size = "6">Welcome</font><font size = "6" id="name"><script type="text/javascript">
+            function getCookie(cname) {
+              let name = cname + "=";
+              let decodedCookie = decodeURIComponent(document.cookie);
+              let ca = decodedCookie.split(';');
+              for(let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                  c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                  return c.substring(name.length, c.length);
+                }
+              }
+              return "";
+            }
+            document.write(getCookie("username"))
+          </script></font><noscript><font size = "6"> Non-Javascript User</font></noscript><font size = "6">!</font></font>
         </div>
         <br>
         <div class="normal_font">
