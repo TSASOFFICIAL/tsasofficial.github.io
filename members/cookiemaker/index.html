@@ -14,11 +14,13 @@
         let expires = "expires=" + d.toUTCString();
         document.cookie = cname + "=" + cvalue + ";" + expires + ";path=../";
       }
-      var GET = window.location.search.substring(1);
-      setCookie("username", GET, 1)
-      window.location.href = `../?${GET}`;
+      function onload() {
+        var GET = window.location.search.substring(1);
+        setCookie("username", GET, 1);
+        window.location.href = `../?${GET}`;
+      }
     </script>
   </head>
-  <body>
+  <body onload=onload()>
   </body>
 </html>
