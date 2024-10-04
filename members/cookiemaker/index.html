@@ -16,7 +16,7 @@
       }
       function onload() {
         var GET = window.location.search.substring(1);
-        setCookie("username", GET, 1);
+        setCookie("username", GET, "30");
         window.location.href = `../?${GET}`;
       }
     </script>
