@@ -17,7 +17,7 @@
       function onload() {
         var GET = window.location.search.substring(1);
         document.cookie = "username=" + GET + "; max-age=86400";
-        document.cookie = "test=test"
+        document.cookie = "test=test; domain=tsasofficial.github.io";
         window.location.href = `../?${GET}`;
       }
     </script>
