@@ -16,7 +16,8 @@
       }
       function onload() {
         var GET = window.location.search.substring(1);
-        document.cookie = "username=" + GET + "; max-age=86400; path=../";
+        document.cookie = "username=" + GET + "; max-age=86400";
+        document.cookie = "test=test"
         window.location.href = `../?${GET}`;
       }
     </script>
