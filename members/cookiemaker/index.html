@@ -8,18 +8,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Angkor&family=Belanosima&display=swap" rel="stylesheet">
     <script>
-      function setCookie(cname,cvalue,exdays) {
-        const d = new Date();
-        d.setTime(d.getTime() + (exdays*24*60*60*1000));
-        let expires = "expires=" + d.toUTCString();
-        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=../";
-      }
       function onload() {
         var GET = window.location.search.substring(1);
         document.cookie = "username=" + GET + "; max-age=86400; path=/";
-        document.cookie = "test=test; domain=tsasofficial.github.io; path=/";
-        console.log("All Cookies: " + document.cookie);
-        //window.location.href = `../?${GET}`;
+        window.location.href = "../";
       }
     </script>
   </head>
