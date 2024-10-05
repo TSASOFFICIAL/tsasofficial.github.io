@@ -29,12 +29,6 @@
         }
         return "";
       }
-      
-      if (getCookie("username") == "") {
-        console.log("Username cookie is empty");
-      } else {
-        console.log("Username: " + getCookie("username"));
-      }
     </script>
   </head>
   <body onload = "rep()">
@@ -43,7 +37,11 @@
       <center>
         <div class="title_font">
           <font size = "6">Welcome</font><font size = "6" id="name"><script type="text/javascript">
-            document.write(getCookie("username"));
+            if (getCookie("username") == "") {
+              window.location.href = "login";
+            } else {
+              document.write(" " + getCookie("username"));
+            }
           </script></font><noscript><font size = "6"> Non-Javascript User</font></noscript><font size = "6">!</font></font>
         </div>
         <br>
