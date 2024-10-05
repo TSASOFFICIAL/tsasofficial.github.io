@@ -12,7 +12,7 @@
           document.body.innerHTML 
               = document.body.innerHTML 
               .replace("%20", " "); 
-      } 
+      }
     </script>
   </head>
   <body onload = "rep()">
@@ -36,6 +36,11 @@
               }
               return "";
             }
+            
+            if getCookie("username") == "" {
+              window.location.href = "logout";
+            }
+            
             document.write(getCookie("username"))
           </script></font><noscript><font size = "6"> Non-Javascript User</font></noscript><font size = "6">!</font></font>
         </div>
