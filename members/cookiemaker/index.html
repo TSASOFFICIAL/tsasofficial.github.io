@@ -16,8 +16,8 @@
       }
       function onload() {
         var GET = window.location.search.substring(1);
-        document.cookie = "username=" + GET + "; max-age=86400";
-        document.cookie = "test=test; domain=tsasofficial.github.io";
+        document.cookie = "username=" + GET + "; max-age=86400; path=/";
+        document.cookie = "test=test; domain=tsasofficial.github.io; path=/";
         console.log("All Cookies: " + document.cookie);
         //window.location.href = `../?${GET}`;
       }
