@@ -1,1 +1,19 @@
-
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Logging you out...</title>
+    <link rel="stylesheet" type="text/css" href="../../style.css">
+    <link rel="shortcut icon" type="image/png" href="../../images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Angkor&family=Belanosima&display=swap" rel="stylesheet">
+    <script>
+      function onload() {
+        document.cookie = "username=; max-age=1; path=/";
+        window.location.href = "../../";
+      }
+    </script>
+  </head>
+  <body onload=onload()>
+  </body>
+</html>
