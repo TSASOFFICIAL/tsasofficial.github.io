@@ -30,7 +30,11 @@
         return "";
       }
       
-      console.log(if (getCookie("username") == ""));
+      if (getCookie("username") == "") {
+        console.log("Username cookie is empty");
+      } else {
+        console.log("Username: " + getCookie("username"));
+      };
     </script>
   </head>
   <body onload = "rep()">
