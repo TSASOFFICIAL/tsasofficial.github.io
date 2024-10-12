@@ -171,3 +171,7 @@ body{
 	background-color: #008CBA;
 	border-radius: 5px;
 }
+
+.hidden{
+    display: none;
+}
