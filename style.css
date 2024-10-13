@@ -153,9 +153,9 @@ body{
 }
 
 .normal_font{
-  font-family: "Belanosima", sans-serif;
-  font-weight: 400;
-  font-style: normal;
+	font-family: "Belanosima", sans-serif;
+	font-weight: 400;
+	font-style: normal;
 }
 
 .button-disabled{
@@ -174,4 +174,8 @@ body{
 
 .hidden{
     display: none;
+}
+
+.round_img{
+	border-radius: 50%;
 }
