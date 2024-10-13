@@ -176,6 +176,6 @@ body{
     display: none;
 }
 
-.round_img{
-	border-radius: 50px;
+.fully-rounded-img{
+	border-radius: 50%;
 }
