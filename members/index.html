@@ -23,8 +23,8 @@
           </script></font><noscript><font size = "6"> Non-Javascript User</font></noscript><font size = "6">!</font></font><img width="100" height="100" id="profilePicture" alt="A very ugly person, you!"/>
           <script type="text/javascript">
             var element = document.getElementById("profilePicture");
-            var pictureCookie = getCookie("picture");
-            if (pictureCookie === null || pictureCookie === "") {
+            let pictureCookie = getCookie("picture");
+            if (pictureCookie === null || pictureCookie === "" || pictureCookie === "null" || pictureCookie === "undefined") {
               element.setAttribute("src", "../images/DefaultProfilePicture.png");
             } else {
               element.setAttribute("src", getCookie("picture"));
