@@ -9,8 +9,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Angkor&family=Belanosima&display=swap" rel="stylesheet">
     <script>
       function onload() {
-        var GET = window.location.search.substring(1);
-        document.cookie = "username=" + GET + "; max-age=86400; path=/";
+        const searchParams = new URLSearchParams(window.location.search);
+        var username = searchParams.get('name');
+        var username = searchParams.get('picture');
+        document.cookie = "username=" + username + "; max-age=86400; path=/";
+        document.cookie = "picture=" + picture + "; max-age=86400; path=/";
         window.location.href = "../";
       }
     </script>
