@@ -11,7 +11,7 @@
       function onload() {
         const searchParams = new URLSearchParams(window.location.search);
         var username = searchParams.get('name');
-        var username = searchParams.get('picture');
+        var picture = searchParams.get('picture');
         document.cookie = "username=" + username + "; max-age=86400; path=/";
         document.cookie = "picture=" + picture + "; max-age=86400; path=/";
         window.location.href = "../";
