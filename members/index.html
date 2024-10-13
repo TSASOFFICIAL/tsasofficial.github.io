@@ -20,13 +20,13 @@
             } else {
               document.write(" " + getCookie("username"));
             }
-          </script></font><noscript><font size = "6"> Non-Javascript User</font></noscript><font size = "6">!</font></font><img id="profilePicture" src="" alt="A very ugly person, you!"/>
-          <script>
+          </script></font><noscript><font size = "6"> Non-Javascript User</font></noscript><font size = "6">!</font></font><img id="profilePicture" alt="A very ugly person, you!"/>
+          <script type="text/javascript">
             var element = document.getElementbyId("profilePicture")
             if getCookie("picture") == "" {
               element.setAttribute("src", "../images/DefaultProfilePicture.svg");
             } else {
-              element.setAttribute("src", getCookie("picture"));
+              element.setAttribute("src", `${getCookie("picture")}`);
             }
           </script>
         </div>
