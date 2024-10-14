@@ -12,8 +12,10 @@
         const searchParams = new URLSearchParams(window.location.search);
         var username = searchParams.get('name');
         var pictureURL = searchParams.get('picture');
+		var usinggoogle = searchParams.get('usinggoogle');
         document.cookie = "username=" + username + "; max-age=86400; path=/";
         document.cookie = "picture=" + pictureURL + "; max-age=86400; path=/";
+		document.cookie = "usinggoogle=" + usinggoogle + "; max-age=86400; path=/";
         window.location.href = "../";
       }
     </script>
