@@ -19,10 +19,18 @@
         <br>
         <br>
         <br>
-        <a href="account"><button class="button button"><div class="normal_font"><font size = "4">Your Account</font></div></button></a>
+        <a id="account-button-link" href="account"><button id="account-button" class="button button"><div class="normal_font"><font size = "4">Your Account</font></div></button></a>
+        <script>
+          if (getCookie("usinggoogle") == "true") {
+            var account_button = getElementById("account-button");
+            var account_button_link = getElementById("account-button-link");
+            account_button.setAttribute("disabled", "")
+            account_button_link.removeAttribute("href")
+          }
+        </script>
         <br>
         <br>
-        <a href='newsletter'><button class="button button"><div class="normal_font"><font size = "4">Sign-Up for our Newsletter</font></div></button></a>
+        <a href="newsletter"><button class="button button"><div class="normal_font"><font size = "4">Sign-Up for our Newsletter</font></div></button></a>
         <br>
         <br>
       </center>
