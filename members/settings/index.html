@@ -24,9 +24,10 @@
           if (getCookie("usinggoogle") == "true") {
             var account_button = document.getElementById("account-button");
             var account_button_link = document.getElementById("account-button-link");
-            account_button.setAttribute("disabled", "")
-            account_button.setAttribute("class", "button-disabled")
-            account_button_link.removeAttribute("href")
+            account_button.setAttribute("disabled", "");
+            account_button.setAttribute("class", "button-disabled");
+            account_button_link.removeAttribute("href");
+            document.write(<div class="normal_font"><font size="3">*Not Available with a Google Account*</font></div>);
           }
         </script>
         <br>
