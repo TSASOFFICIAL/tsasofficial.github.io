@@ -22,8 +22,8 @@
         <a id="account-button-link" href="account"><button id="account-button" class="button button"><div class="normal_font"><font size = "4">Your Account</font></div></button></a>
         <script>
           if (getCookie("usinggoogle") == "true") {
-            var account_button = getElementById("account-button");
-            var account_button_link = getElementById("account-button-link");
+            var account_button = document.getElementById("account-button");
+            var account_button_link = document.getElementById("account-button-link");
             account_button.setAttribute("disabled", "")
             account_button_link.removeAttribute("href")
           }
