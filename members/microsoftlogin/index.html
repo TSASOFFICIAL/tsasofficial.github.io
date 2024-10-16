@@ -37,10 +37,10 @@
         });
 
         if (response.ok) {
-          const profileData = await response.json();
-          const givenName = profileData.givenName;
-          const familyName = profileData.surname;
-          const userId = profileData.userPrincipalName;
+          var profileData = await response.json();
+          var givenName = profileData.givenName;
+          var familyName = profileData.surname;
+          var userId = profileData.userPrincipalName;
 
           console.log("Given Name:", givenName);
           console.log("Family Name:", familyName);
