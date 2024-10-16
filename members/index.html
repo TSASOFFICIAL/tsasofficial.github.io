@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Angkor&family=Belanosima&display=swap" rel="stylesheet">
     <script src="../script.js"></script>
     <script>
-      logoutBTNfunction() {
+      logoutBTN() {
         document.cookie = 'microsoftlogoutcookie=active; max-age=86400; path=/';
         window.location.href= 'microsoftlogout';
       };
@@ -23,7 +23,7 @@
           var logout_a_element = document.getElementById("logout_a");
           var logout_button = document.getElementById("logout_btn");
           logout_a_element.removeAttribute("href");
-          logout_button.setAttribute("onclick", "logoutBTNfunction()");
+          logout_button.setAttribute("onclick", "logoutBTN();");
         }
       </script>
       <center>
