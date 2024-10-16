@@ -23,23 +23,8 @@
         storeAuthStateInCookie: false
       }
     };
-
-    const msalInstance = new msal.PublicClientApplication(msalConfig);
-
-    // Handle the redirect response and acquire tokens
-    msalInstance.handleRedirectPromise().then((response) => {
-      if (response) {
-        // Successful login, process token and profile
-        console.log("Login response:", response);
-        const accessToken = response.accessToken;
-        fetchUserProfile(accessToken);
-      } else {
-        console.error("No redirect response received.");
-      }
-    }).catch((error) => {
-      console.error("Error handling redirect:", error);
-    });
-
+    var searchParams = new URLSearchParams(window.location.search);
+    var accessToken = searchParams.get('token');
     // Fetch user profile from Microsoft Graph API
     async function fetchUserProfile(accessToken) {
       try {
