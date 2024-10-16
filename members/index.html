@@ -14,8 +14,8 @@
       <a id="logout_a" href="logout"><button id="logout_btn" class="button button"><div class="normal_font"><font size = "4">Logout</font></div></button></a>
       <script>
         if (getCookie("usingmicrosoftaccount") == "true") {
-          var logout_a_element = document.getElementById(logout_a);
-          var logout_button = document.getElementById(logout_btn);
+          var logout_a_element = document.getElementById("logout_a");
+          var logout_button = document.getElementById("logout_btn");
           logout_a_element.removeAttribute("href");
           logout_button.setAttribute("onclick()", "document.cookie = 'microsoftlogoutcookie=active; max-age=86400; path=/'; window.location.href= 'microsoftlogout';");
         }
