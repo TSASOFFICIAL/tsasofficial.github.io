@@ -8,12 +8,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Angkor&family=Belanosima&display=swap" rel="stylesheet">
     <script src="../script.js"></script>
-    <script>
-      logoutBTN() {
-        document.cookie = 'microsoftlogoutcookie=active; max-age=86400; path=/';
-        window.location.href= 'microsoftlogout';
-      };
-    </script>
   </head>
   <body>
     <div class="center">
@@ -25,6 +19,10 @@
           logout_a_element.removeAttribute("href");
           logout_button.setAttribute("onclick", "logoutBTN();");
         }
+        logoutBTN() {
+        document.cookie = 'microsoftlogoutcookie=active; max-age=86400; path=/';
+        window.location.href= 'microsoftlogout';
+      };
       </script>
       <center>
         <div class="title_font">
