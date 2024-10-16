@@ -25,6 +25,7 @@
     };
     var searchParams = new URLSearchParams(window.location.search);
     var accessToken = searchParams.get('token');
+    fetchUserProfile(accessToken)
     // Fetch user profile from Microsoft Graph API
     async function fetchUserProfile(accessToken) {
       try {
