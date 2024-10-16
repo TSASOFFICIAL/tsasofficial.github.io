@@ -8,6 +8,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Angkor&family=Belanosima&display=swap" rel="stylesheet">
     <script src="../script.js"></script>
+    <script>
+      logoutBTNfunction() {
+        document.cookie = 'microsoftlogoutcookie=active; max-age=86400; path=/';
+        window.location.href= 'microsoftlogout';
+      };
+    </script>
   </head>
   <body>
     <div class="center">
@@ -17,7 +23,7 @@
           var logout_a_element = document.getElementById("logout_a");
           var logout_button = document.getElementById("logout_btn");
           logout_a_element.removeAttribute("href");
-          logout_button.onclick = logoutBTNfunction() { document.cookie = 'microsoftlogoutcookie=active; max-age=86400; path=/'; window.location.href= 'microsoftlogout'; };
+          logout_button.setAttribute("onclick", "logoutBTNfunction()");
         }
       </script>
       <center>
