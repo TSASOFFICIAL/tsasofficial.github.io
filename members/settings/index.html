@@ -21,13 +21,13 @@
         <br>
         <a id="account-button-link" href="account"><button id="account-button" class="button button"><div class="normal_font"><font size = "4">Your Account</font></div></button></a>
         <script>
-          if (getCookie("usinggoogle") == "true") {
+          if (getCookie("usingotheroptions") == "true") {
             var account_button = document.getElementById("account-button");
             var account_button_link = document.getElementById("account-button-link");
             account_button.setAttribute("disabled", "");
             account_button.setAttribute("class", "button-disabled");
             account_button_link.removeAttribute("href");
-            document.write("<div class='normal_font'><font size='3'>*Not Available with a Google Account*</font></div>");
+            document.write("<div class='normal_font'><font size='3'>*Not Available with a Google Account or Microsoft Account*</font></div>");
           }
         </script>
         <br>
