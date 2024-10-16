@@ -11,11 +11,13 @@
   </head>
   <body>
     <div class="center">
-      <a id="logout_btn" href="logout"><button class="button button"><div class="normal_font"><font size = "4">Logout</font></div></button></a>
+      <a id="logout_a" href="logout"><button id="logout_btn" class="button button"><div class="normal_font"><font size = "4">Logout</font></div></button></a>
       <script>
         if (getCookie("usingmicrosoftaccount") == "true") {
-          var logout_button = getElementById.logout_btn
-          logout_button.setAttribute("href", "microsoftlogout")
+          var logout_a_element = getElementById(logout_a);
+          var logout_button = getElementById(logout_btn);
+          logout_a_element.removeAttribute("href");
+          logout_button.setAttribute("onclick()", "document.cookie = 'microsoftlogoutcookie=active; max-age=86400; path=/'; window.location.href= 'microsoftlogout';");
         }
       </script>
       <center>
