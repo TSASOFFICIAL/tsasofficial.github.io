@@ -15,14 +15,9 @@
 	            var usingotheroptions = searchParams.get('usingotheroptions');
 	            var usingmicrosoftaccount = searchParams.get('usingmicrosoftaccount');
                 document.cookie = "username=" + username + "; max-age=86400; path=/";
-	            if (usingmicrosoftaccount == "true") {
-		            var blob = URL.createObjectURL(pictureURL);  // Create a URL for the Blob
-		            document.cookie = "picture=" + blob + "; max-age=86400; path=/";
-	            } else {
-        	        document.cookie = "picture=" + pictureURL + "; max-age=86400; path=/";
-	            }
+        	    document.cookie = "picture=" + pictureURL + "; max-age=86400; path=/";
 	            document.cookie = "usingotheroptions=" + usingotheroptions + "; max-age=86400; path=/";
-		    document.cookie = "usingmicrosoftaccount=" + usingotheroptions + "; max-age=86400; path=/";
+		        document.cookie = "usingmicrosoftaccount=" + usingotheroptions + "; max-age=86400; path=/";
                 window.location.href = "../";
             }
         </script>
