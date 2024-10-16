@@ -17,7 +17,7 @@
           var logout_a_element = document.getElementById("logout_a");
           var logout_button = document.getElementById("logout_btn");
           logout_a_element.removeAttribute("href");
-          logout_button.setAttribute("onclick()", "document.cookie = 'microsoftlogoutcookie=active; max-age=86400; path=/'; window.location.href= 'microsoftlogout';");
+          logout_button.onclick = logoutBTNfunction() {document.cookie = 'microsoftlogoutcookie=active; max-age=86400; path=/'; window.location.href= 'microsoftlogout';};
         }
       </script>
       <center>
