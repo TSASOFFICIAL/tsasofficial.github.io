@@ -11,7 +11,13 @@
   </head>
   <body>
     <div class="center">
-      <a href="logout"><button class="button button"><div class="normal_font"><font size = "4">Logout</font></div></button></a>
+      <a id="logout_btn" href="logout"><button class="button button"><div class="normal_font"><font size = "4">Logout</font></div></button></a>
+      <script>
+        if (getCookie("usingmicrosoftaccount") == "true") {
+          var logout_button = getElementById.logout_btn
+          logout_button.setAttribute("href", "microsoftlogout")
+        }
+      </script>
       <center>
         <div class="title_font">
           <font size = "6">Welcome</font><font size = "6" id="name"><script type="text/javascript">
