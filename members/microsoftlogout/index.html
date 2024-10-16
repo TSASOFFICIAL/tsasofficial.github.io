@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Logging you out...</title>
+  <link rel="stylesheet" type="text/css" href="../style.css">
+  <link rel="shortcut icon" type="image/png" href="../images/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Angkor&family=Belanosima&display=swap" rel="stylesheet">
+  <script src="../../script.js"></script>
+  <script src="https://alcdn.msauth.net/browser/2.28.1/js/msal-browser.min.js"></script> <!-- MSAL.js -->
+</head>
+<body>
+
+  <script>
+    // MSAL.js configuration
+    const msalConfig = {
+      auth: {
+        clientId: "244e92a4-1f38-485b-9100-b9581efa4a75",  // Application (client) ID from Azure portal
+        authority: "https://login.microsoftonline.com/common",  // Use 'common' for multi-tenant
+        redirectUri: "https://tsasofficial.github.io/members/microsoftlogout",  // Where the user will be redirected after logout
+      },
+      cache: {
+        cacheLocation: "sessionStorage",  // Clear session storage when logging out
+        storeAuthStateInCookie: false
+      }
+    };
+
+    const msalInstance = new msal.PublicClientApplication(msalConfig);
+    if (getCookie(microsoftlogoutcookie) == "active") {
+      function()
+    } else {
+      window.location.href = "../logout";
+    }
+    // Sign out the user
+    function() {
+      const logoutRequest = {
+        account: msalInstance.getAllAccounts()[0],  // Specify the account to log out
+        document.cookie = "microsoftlogoutcookie="; max-age=1; path=/";
+        postLogoutRedirectUri: "https://tsasofficial.github.io/members/microsoftlogout"  // Redirect here after logout
+      };
+
+      msalInstance.logout(logoutRequest).then(() => {
+        console.log("User logged out successfully.");
+      }).catch(error => {
+        console.error("Error during logout:", error);
+      });
+    });
+  </script>
+  
+</body>
+</html>
