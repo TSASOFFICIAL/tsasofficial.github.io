@@ -25,7 +25,20 @@
         storeAuthStateInCookie: false
       }
     };
-
+    
+    function() {
+      const logoutRequest = {
+        account: msalInstance.getAllAccounts()[0],  // Specify the account to log out
+        postLogoutRedirectUri: "https://tsasofficial.github.io/members/microsoftlogout"  // Redirect here after logout
+      };
+      
+      msalInstance.logout(logoutRequest).then(() => {
+        console.log("User logged out successfully.");
+      }).catch(error => {
+        console.error("Error during logout:", error);
+      });
+    };
+    
     const msalInstance = new msal.PublicClientApplication(msalConfig);
     if (getCookie(microsoftlogoutcookie) == "active") {
       document.cookie = "microsoftlogoutcookie=; max-age=1; path=/";
@@ -34,18 +47,6 @@
       window.location.href = "../logout";
     }
     
-    function() {
-      const logoutRequest = {
-        account: msalInstance.getAllAccounts()[0],  // Specify the account to log out
-        postLogoutRedirectUri: "https://tsasofficial.github.io/members/microsoftlogout"  // Redirect here after logout
-      };
-
-      msalInstance.logout(logoutRequest).then(() => {
-        console.log("User logged out successfully.");
-      }).catch(error => {
-        console.error("Error during logout:", error);
-      });
-    };
   </script>
 </body>
 </html>
