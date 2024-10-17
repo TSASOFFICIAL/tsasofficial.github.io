@@ -40,7 +40,7 @@
     };
     
     const msalInstance = new msal.PublicClientApplication(msalConfig);
-    if (getCookie(microsoftlogoutcookie) == "active") {
+    if (getCookie("microsoftlogoutcookie") == "active") {
       document.cookie = "microsoftlogoutcookie=; max-age=1; path=/";
       startLogout()
     } else {
