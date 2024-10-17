@@ -14,7 +14,7 @@
             const logoutUrl = "https://login.microsoftonline.com/common/oauth2/v2.0/logout";
             
             // Redirect URI after successful logout
-            const postLogoutRedirectUri = "https://tsasofficial.github.io/members/logout";
+            const postLogoutRedirectUri = encodeURIComponent("https://tsasofficial.github.io/members/logout");
             
             // Redirect the user to the logout URL
             window.location.href = `${logoutUrl}?post_logout_redirect_uri=${postLogoutRedirectUri}`;
