@@ -8,58 +8,45 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Angkor&family=Belanosima&display=swap" rel="stylesheet">
   <script src="../../script.js"></script>
-  <script src="https://alcdn.msauth.net/browser/2.28.1/js/msal-browser.min.js"></script> <!-- MSAL.js -->
-</head>
-<body>
-
+  <script src="https://alcdn.msauth.net/browser/2.18.0/js/msal-browser.min.js"></script>
   <script>
     // MSAL.js configuration
     const msalConfig = {
-      auth: {
-        clientId: "244e92a4-1f38-485b-9100-b9581efa4a75",  // Application (client) ID from Azure portal
-        authority: "https://login.microsoftonline.com/common",  // Use 'common' for multi-tenant
-        redirectUri: "https://tsasofficial.github.io/members/microsoftlogout",  // Where the user will be redirected after logout
-      },
-      cache: {
-        cacheLocation: "sessionStorage",  // Clear session storage when logging out
-        storeAuthStateInCookie: false
-      }
+            auth: {
+                clientId: "244e92a4-1f38-485b-9100-b9581efa4a75",  // Replace with your client ID
+                authority: "https://login.microsoftonline.com/common", // Common endpoint for multi-tenant
+                redirectUri: "https://tsasofficial.github.io/members/logout", // The URL that users are redirected to after logging in/out
+            },
+            cache: {
+                cacheLocation: "localStorage", // This configures where your cache will be stored
+                storeAuthStateInCookie: true, // This is helpful for certain browsers (like IE) or scenarios where cookies are needed
+            }
     };
-
+    
     const msalInstance = new msal.PublicClientApplication(msalConfig);
     
-    function startLogout() {
-      const account = msalInstance.getAllAccounts()[0];  // Get the currently logged-in account
-      
-      if (account) {
-        msalInstance.logoutPopup({
-          account: account,  // Specify which account to log out
-        }).then(() => {
-          console.log("User logged out successfully using popup.");
-          // Optionally, redirect the user after the popup closes
-          window.location.href = "https://tsasofficial.github.io/members/microsoftlogout";
-        }).catch(error => {
-          console.error("Error during logout:", error);
-        });
-      } else {
-        // If no account found, perform logout anyway to clear any session
-        console.log("No active account found, logging out anyway to clear session.");
-        msalInstance.logoutPopup({
-          postLogoutRedirectUri: "https://tsasofficial.github.io/members/microsoftlogout"
-        }).then(() => {
-          console.log("Logged out without active account.");
-        }).catch(error => {
-          console.error("Error during logout:", error);
-        });
-      }
-    };
+    async function logout() {
+            const logoutRequest = {
+                account: msalInstance.getAllAccounts()[0], // Automatically logs out the first account (the one used to sign in)
+                postLogoutRedirectUri: "https://tsasofficial.github.io/members/logout", // Where to redirect after logout
+            };
 
+            try {
+                await msalInstance.logoutPopup(logoutRequest);
+                console.log("Logout successful.");
+            } catch (error) {
+                console.error("Logout failed:", error);
+            }
+        }
+    
     if (getCookie("microsoftlogoutcookie") == "active") {
       document.cookie = "microsoftlogoutcookie=; max-age=1; path=/";
-      startLogout()
+      logout()
     } else {
       window.location.href = "../logout";
     }
-  </script>
+</script>
+</head>
+<body>
 </body>
 </html>
