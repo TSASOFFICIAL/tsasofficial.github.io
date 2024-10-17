@@ -29,10 +29,7 @@
     const msalInstance = new msal.PublicClientApplication(msalConfig);
     
     function startLogout() {
-      const logoutRequest = {
-        account: msalInstance.getAllAccounts()[0],  // Specify the account to log out
-        postLogoutRedirectUri: "https://tsasofficial.github.io/members/microsoftlogout"  // Redirect here after logout
-      };
+      const account = msalInstance.getAllAccounts()[0];  // Get the currently logged-in account
       
       if (account) {
         msalInstance.logoutPopup({
