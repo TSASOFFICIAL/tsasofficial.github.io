@@ -7,9 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Angkor&family=Belanosima&display=swap" rel="stylesheet">
-    <script defer src="https://alcdn.msauth.net/browser/2.28.1/js/msal-browser.min.js"></script>
+    <script src="https://alcdn.msauth.net/browser/2.28.1/js/msal-browser.min.js"></script>
     <script>
-      async function logoutFunction() {
     const config = {
   auth: {
     clientId: "244e92a4-1f38-485b-9100-b9581efa4a75",
@@ -25,7 +24,7 @@ const logoutRequest = {
   account: myMsal.getAccountByHomeId(homeAccountId),
   mainWindowRedirectUri: "https://tsasofficial.github.io/logout",
 };
-
+      async function logoutFunction() {
 await myMsal.logoutPopup(logoutRequest);
       };
 
