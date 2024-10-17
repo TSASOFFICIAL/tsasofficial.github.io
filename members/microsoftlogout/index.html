@@ -1,38 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <title>Logging you out...</title>
-  <link rel="stylesheet" type="text/css" href="../../style.css">
-  <link rel="shortcut icon" type="image/png" href="../../images/favicon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Angkor&family=Belanosima&display=swap" rel="stylesheet">
-  <script src="../../script.js"></script>
-  <script src="https://alcdn.msauth.net/browser/2.18.0/js/msal-browser.min.js"></script>
-  <script>
-    function logout() {
-      const logoutUrl = 'https://login.microsoftonline.com/common/oauth2/v2.0/logout';
-
-      // Open a pop-up window to log out the user
-      const popup = window.open(logoutUrl, 'Logout', 'width=600,height=400');
-
-      // Set an interval to monitor the popup, and close it automatically once the logout is complete.
-      const popupCheckInterval = setInterval(() => {
-        if (popup.closed) {
-          clearInterval(popupCheckInterval);
-          alert('You have been logged out of all Microsoft accounts.');
+  <head>
+    <title>Logging you out...</title>
+    <link rel="stylesheet" type="text/css" href="../../style.css">
+    <link rel="shortcut icon" type="image/png" href="../../images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Angkor&family=Belanosima&display=swap" rel="stylesheet">
+    <script type="text/javascript">
+        // Function to log out from all Microsoft accounts
+        function logoutMicrosoft() {
+            // Microsoft logout URL for all accounts
+            const logoutUrl = "https://login.microsoftonline.com/common/oauth2/v2.0/logout";
+            
+            // Redirect URI after successful logout
+            const postLogoutRedirectUri = "https://tsasofficial.github.io/members/logout";
+            
+            // Redirect the user to the logout URL
+            window.location.href = `${logoutUrl}?post_logout_redirect_uri=${postLogoutRedirectUri}`;
         }
-      }, 500);
-    }
-    
-    if (getCookie("microsoftlogoutcookie") == "active") {
-      document.cookie = "microsoftlogoutcookie=; max-age=1; path=/";
-      logout()
-    } else {
-      window.location.href = "../logout";
-    }
-</script>
-</head>
-<body>
-</body>
+    </script>
+  </head>
+  <body onload="logoutMicrosoft()">
+  </body>
 </html>
