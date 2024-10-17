@@ -28,15 +28,15 @@
 
     const msalInstance = new msal.PublicClientApplication(msalConfig);
     if (getCookie(microsoftlogoutcookie) == "active") {
+      document.cookie = "microsoftlogoutcookie="; max-age=1; path=/";
       function()
     } else {
       window.location.href = "../logout";
     }
-    // Sign out the user
+    
     function() {
       const logoutRequest = {
         account: msalInstance.getAllAccounts()[0],  // Specify the account to log out
-        document.cookie = "microsoftlogoutcookie="; max-age=1; path=/";
         postLogoutRedirectUri: "https://tsasofficial.github.io/members/microsoftlogout"  // Redirect here after logout
       };
 
@@ -45,8 +45,7 @@
       }).catch(error => {
         console.error("Error during logout:", error);
       });
-    });
+    };
   </script>
-  
 </body>
 </html>
