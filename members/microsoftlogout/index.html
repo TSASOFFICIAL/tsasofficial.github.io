@@ -25,6 +25,8 @@
         storeAuthStateInCookie: false
       }
     };
+
+    const msalInstance = new msal.PublicClientApplication(msalConfig);
     
     function startLogout() {
       const logoutRequest = {
