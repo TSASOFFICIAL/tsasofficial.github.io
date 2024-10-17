@@ -10,28 +10,36 @@
     <script src="https://alcdn.msauth.net/browser/2.28.1/js/msal-browser.min.js"></script>
     <script>
     document.addEventListener("DOMContentLoaded", function () {
-  const config = {
-    auth: {
-      clientId: "244e92a4-1f38-485b-9100-b9581efa4a75",
-      redirectUri: "https://tsasofficial.github.io/members/microsoftlogin",
-      postLogoutRedirectUri: "https://tsasofficial.github.io/logout",
-    },
-  };
+      const config = {
+        auth: {
+          clientId: "244e92a4-1f38-485b-9100-b9581efa4a75",
+          redirectUri: "https://tsasofficial.github.io/members/microsoftlogin",
+          postLogoutRedirectUri: "https://tsasofficial.github.io/logout",
+        },
+      };
 
-  const myMsal = new msal.PublicClientApplication(config); // 'msal' namespace added
+      const myMsal = new msal.PublicClientApplication(config);
 
-  const logoutRequest = {
-    account: myMsal.getAccountByHomeId(homeAccountId),
-    mainWindowRedirectUri: "https://tsasofficial.github.io/logout",
-  };
+      // Get the currently logged-in account
+      const currentAccounts = myMsal.getAllAccounts();
+      if (currentAccounts.length === 0) {
+        console.log("No accounts found");
+        return; // No accounts, nothing to log out
+      }
 
-  async function logoutFunction() {
-    await myMsal.logoutPopup(logoutRequest);
-  };
+      const account = currentAccounts[0]; // Use the first account found, typically the logged-in user
+      const logoutRequest = {
+        account: account, // Pass the account object
+        mainWindowRedirectUri: "https://tsasofficial.github.io/logout",
+      };
 
-  logoutFunction();
-});
-</script>
+      async function logoutFunction() {
+        await myMsal.logoutPopup(logoutRequest);
+      };
+
+      logoutFunction();
+    });
+    </script>
   </head>
   <body>
   </body>
