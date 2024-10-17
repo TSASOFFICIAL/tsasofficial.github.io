@@ -8,19 +8,28 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Angkor&family=Belanosima&display=swap" rel="stylesheet">
     <script type="text/javascript">
-        // Function to log out from all Microsoft accounts
-        function logoutMicrosoft() {
+    <script type="text/javascript">
+        // Function to log out from Microsoft after a delay
+        function redirectToMicrosoftLogout() {
             // Microsoft logout URL for all accounts
             const logoutUrl = "https://login.microsoftonline.com/common/oauth2/v2.0/logout";
             
-            // Redirect URI after successful logout
+            // Custom redirect URL after Microsoft logout
             const postLogoutRedirectUri = encodeURIComponent("https://tsasofficial.github.io/members/logout");
             
-            // Redirect the user to the logout URL
-            window.location.href = `${logoutUrl}?post_logout_redirect_uri=${postLogoutRedirectUri}`;
+            // Complete logout URL
+            const fullLogoutUrl = `${logoutUrl}?post_logout_redirect_uri=${postLogoutRedirectUri}`;
+            
+            // Redirect after a brief delay (e.g., 2 seconds)
+            setTimeout(() => {
+                window.location.href = fullLogoutUrl;
+            }, 2000);
         }
+
+        // Initiate logout on page load
+        window.onload = redirectToMicrosoftLogout;
     </script>
   </head>
-  <body onload="logoutMicrosoft()">
+  <body onload="redirectToMicrosoftLogout()">
   </body>
 </html>
