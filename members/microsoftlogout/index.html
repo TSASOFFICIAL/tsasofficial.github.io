@@ -28,7 +28,7 @@
 
     const msalInstance = new msal.PublicClientApplication(msalConfig);
     if (getCookie(microsoftlogoutcookie) == "active") {
-      document.cookie = "microsoftlogoutcookie="; max-age=1; path=/";
+      document.cookie = "microsoftlogoutcookie=; max-age=1; path=/";
       function()
     } else {
       window.location.href = "../logout";
