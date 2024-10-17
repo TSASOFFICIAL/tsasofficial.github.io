@@ -37,14 +37,22 @@
         }).then(() => {
           console.log("User logged out successfully using popup.");
           // Optionally, redirect the user after the popup closes
-          window.location.href = "https://tsasofficial.guthub.io/members/microsoftlogout";
+          window.location.href = "https://tsasofficial.github.io/members/microsoftlogout";
         }).catch(error => {
           console.error("Error during logout:", error);
         });
       } else {
-        console.error("No active account found to log out.");
+        // If no account found, perform logout anyway to clear any session
+        console.log("No active account found, logging out anyway to clear session.");
+        msalInstance.logoutPopup({
+          postLogoutRedirectUri: "https://tsasofficial.github.io/members/microsoftlogout"
+        }).then(() => {
+          console.log("Logged out without active account.");
+        }).catch(error => {
+          console.error("Error during logout:", error);
+        });
       }
-    }
+    };
 
     if (getCookie("microsoftlogoutcookie") == "active") {
       document.cookie = "microsoftlogoutcookie=; max-age=1; path=/";
@@ -52,7 +60,6 @@
     } else {
       window.location.href = "../logout";
     }
-    
   </script>
 </body>
 </html>
