@@ -26,7 +26,7 @@
       }
     };
     
-    function() {
+    startLogout() {
       const logoutRequest = {
         account: msalInstance.getAllAccounts()[0],  // Specify the account to log out
         postLogoutRedirectUri: "https://tsasofficial.github.io/members/microsoftlogout"  // Redirect here after logout
@@ -42,7 +42,7 @@
     const msalInstance = new msal.PublicClientApplication(msalConfig);
     if (getCookie(microsoftlogoutcookie) == "active") {
       document.cookie = "microsoftlogoutcookie=; max-age=1; path=/";
-      function()
+      startLogout()
     } else {
       window.location.href = "../logout";
     }
