@@ -7,26 +7,24 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Angkor&family=Belanosima&display=swap" rel="stylesheet">
-    <script type="text/javascript">
-        // Function to log out from Microsoft after a delay
-        function redirectToMicrosoftLogout() {
-            // Microsoft logout URL for all accounts
-            const logoutUrl = "https://login.microsoftonline.com/common/oauth2/v2.0/logout";
-            
-            // Custom redirect URL after Microsoft logout
-            const postLogoutRedirectUri = encodeURIComponent("https://tsasofficial.github.io/members/logout");
-            
-            // Complete logout URL
-            const fullLogoutUrl = `${logoutUrl}?post_logout_redirect_uri=${postLogoutRedirectUri}`;
-            
-            // Redirect after a brief delay (e.g., 2 seconds)
-            setTimeout(() => {
-                window.location.href = fullLogoutUrl;
-            }, 2000);
-        }
+    <script>
+    const config = {
+  auth: {
+    clientId: "244e92a4-1f38-485b-9100-b9581efa4a75",
+    redirectUri: "https://tsasofficial.github.io/members/microsoftlogin", // defaults to application start page
+    postLogoutRedirectUri: "https://tsasofficial.github.io/logout",
+  },
+};
 
-        // Initiate logout on page load
-        window.onload = redirectToMicrosoftLogout;
+const myMsal = new PublicClientApplication(config);
+
+// you can select which account application should sign out
+const logoutRequest = {
+  account: myMsal.getAccountByHomeId(homeAccountId),
+  mainWindowRedirectUri: "https://tsasofficial.github.io/logout",
+};
+
+await myMsal.logoutPopup(logoutRequest);
     </script>
   </head>
   <body>
