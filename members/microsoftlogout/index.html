@@ -28,8 +28,12 @@ const logoutRequest = {
 
 await myMsal.logoutPopup(logoutRequest);
       };
+
+      document.addEventListener("DOMContentLoaded", function () {
+  logoutFunction();
+});
     </script>
   </head>
-  <body onload="logoutFunction()">
+  <body>
   </body>
 </html>
