@@ -25,7 +25,8 @@
     };
     var searchParams = new URLSearchParams(window.location.search);
     var accessToken = searchParams.get('token');
-    fetchUserProfile(accessToken)
+    fetchUserProfile(accessToken);
+
     // Fetch user profile from Microsoft Graph API
     async function fetchUserProfile(accessToken) {
       try {
@@ -46,6 +47,9 @@
           console.log("Family Name:", familyName);
           console.log("Microsoft Account ID:", userId);
           
+          // Once done, you can proceed to close the window or interaction if needed
+          window.close();
+
         } else {
           console.error("Error fetching profile:", response.statusText);
         }
@@ -64,17 +68,23 @@
         if (response.ok) {
           const blob = await response.blob();  // Get the image data as a Blob
           const imageUrl = URL.createObjectURL(blob);  // Create a URL for the Blob
-          parent.location.href = `../cookiemaker?name=${givenName}&picture=${imageUrl}&usingotheroptions=true&usingmicrosoftaccount=true`;
+          redirectToTarget(givenName, imageUrl);
           
         } else {
           console.log("No profile picture found.");
-          parent.location.href = `../cookiemaker?name=${givenName}&picture=&usingotheroptions=true&usingmicrosoftaccount=true`;
+          redirectToTarget(givenName, "");
         }
       } catch (error) {
         console.error("Error fetching profile picture:", error);
+        redirectToTarget(givenName, "");
       }
-      
     }
-  </script>
+
+    // Function to handle redirection
+    function redirectToTarget(name, picture) {
+      parent.location.href = `../cookiemaker?name=${name}&picture=${picture}&usingotheroptions=true&usingmicrosoftaccount=true`;
+    }
+
+    </script>
   </body>
 </html>
