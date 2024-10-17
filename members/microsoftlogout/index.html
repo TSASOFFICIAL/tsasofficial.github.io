@@ -32,14 +32,21 @@
         postLogoutRedirectUri: "https://tsasofficial.github.io/members/microsoftlogout"  // Redirect here after logout
       };
       
-      msalInstance.logout(logoutPopup).then(() => {
-        console.log("User logged out successfully.");
-      }).catch(error => {
-        console.error("Error during logout:", error);
-      });
-    };
-    
-    const msalInstance = new msal.PublicClientApplication(msalConfig);
+      if (account) {
+        msalInstance.logoutPopup({
+          account: account,  // Specify which account to log out
+        }).then(() => {
+          console.log("User logged out successfully using popup.");
+          // Optionally, redirect the user after the popup closes
+          window.location.href = "https://tsasofficial.guthub.io/members/microsoftlogout";
+        }).catch(error => {
+          console.error("Error during logout:", error);
+        });
+      } else {
+        console.error("No active account found to log out.");
+      }
+    }
+
     if (getCookie("microsoftlogoutcookie") == "active") {
       document.cookie = "microsoftlogoutcookie=; max-age=1; path=/";
       startLogout()
