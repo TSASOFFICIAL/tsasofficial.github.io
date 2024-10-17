@@ -10,34 +10,20 @@
   <script src="../../script.js"></script>
   <script src="https://alcdn.msauth.net/browser/2.18.0/js/msal-browser.min.js"></script>
   <script>
-    // MSAL.js configuration
-    const msalConfig = {
-            auth: {
-                clientId: "244e92a4-1f38-485b-9100-b9581efa4a75",  // Replace with your client ID
-                authority: "https://login.microsoftonline.com/common", // Common endpoint for multi-tenant
-                redirectUri: "https://tsasofficial.github.io/members/logout", // The URL that users are redirected to after logging in/out
-            },
-            cache: {
-                cacheLocation: "localStorage", // This configures where your cache will be stored
-                storeAuthStateInCookie: true, // This is helpful for certain browsers (like IE) or scenarios where cookies are needed
-            }
-    };
-    
-    const msalInstance = new msal.PublicClientApplication(msalConfig);
-    
-    async function logout() {
-            const logoutRequest = {
-                account: msalInstance.getAllAccounts()[0], // Automatically logs out the first account (the one used to sign in)
-                postLogoutRedirectUri: "https://tsasofficial.github.io/members/logout", // Where to redirect after logout
-            };
+    function logout() {
+      const logoutUrl = 'https://login.microsoftonline.com/common/oauth2/v2.0/logout';
 
-            try {
-                await msalInstance.logoutPopup(logoutRequest);
-                console.log("Logout successful.");
-            } catch (error) {
-                console.error("Logout failed:", error);
-            }
+      // Open a pop-up window to log out the user
+      const popup = window.open(logoutUrl, 'Logout', 'width=600,height=400');
+
+      // Set an interval to monitor the popup, and close it automatically once the logout is complete.
+      const popupCheckInterval = setInterval(() => {
+        if (popup.closed) {
+          clearInterval(popupCheckInterval);
+          alert('You have been logged out of all Microsoft accounts.');
         }
+      }, 500);
+    }
     
     if (getCookie("microsoftlogoutcookie") == "active") {
       document.cookie = "microsoftlogoutcookie=; max-age=1; path=/";
