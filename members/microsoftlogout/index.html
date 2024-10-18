@@ -7,52 +7,35 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Angkor&family=Belanosima&display=swap" rel="stylesheet">
-    <script src="https://alcdn.msauth.net/browser/2.28.1/js/msal-browser.min.js"></script>
     <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const config = {
-        auth: {
-          clientId: "244e92a4-1f38-485b-9100-b9581efa4a75",
-          redirectUri: "https://tsasofficial.github.io/members/microsoftlogin",
-          postLogoutRedirectUri: "https://tsasofficial.github.io/logout",
-        },
-      };
+      document.addEventListener("DOMContentLoaded", function () {
+        // Open the logout popup
+        function openLogoutPopup() {
+          const popup = window.open(
+            "https://login.microsoftonline.com/common/oauth2/v2.0/logout?post_logout_redirect_uri=https://tsasofficial.github.io/logout",
+            "LogoutPopup",
+            "width=500,height=600"
+          );
+          
+          if (!popup) {
+            alert("Please enable pop-ups for this site to complete the logout process.");
+          } else {
+            // Check for when the pop-up is closed
+            const checkPopupClosed = setInterval(function () {
+              if (popup.closed) {
+                clearInterval(checkPopupClosed);
+                // Redirect the main page after pop-up closes
+                window.location.href = "https://tsasofficial.github.io/members/logout";
+              }
+            }, 500);
+          }
+        }
 
-      const myMsal = new msal.PublicClientApplication(config);
-
-      // Get all accounts
-      const accounts = myMsal.getAllAccounts();
-
-      if (accounts.length === 0) {
-        document.body.innerHTML = "<p>No accounts found to log out from.</p>";
-        return; // No accounts to log out
-      }
-
-      // Display the accounts in a list
-      const accountList = document.createElement("ul");
-      accounts.forEach((account, index) => {
-        const listItem = document.createElement("li");
-        const button = document.createElement("button");
-        button.textContent = `Log out of ${account.username}`;
-        button.onclick = function () {
-          logoutAccount(account);
-        };
-        listItem.appendChild(button);
-        accountList.appendChild(listItem);
+        // Trigger the popup function
+        openLogoutPopup();
       });
-      document.body.appendChild(accountList);
-
-      async function logoutAccount(account) {
-        const logoutRequest = {
-          account: account, // Pass the selected account
-          mainWindowRedirectUri: "https://tsasofficial.github.io/logout",
-        };
-        await myMsal.logoutPopup(logoutRequest);
-      }
-    });
     </script>
   </head>
   <body>
-    <p>Select an account to log out:</p>
   </body>
 </html>
