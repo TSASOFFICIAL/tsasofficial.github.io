@@ -20,27 +20,39 @@
 
       const myMsal = new msal.PublicClientApplication(config);
 
-      // Get the currently logged-in account
-      const currentAccounts = myMsal.getAllAccounts();
-      if (currentAccounts.length === 0) {
-        console.log("No accounts found");
-        return; // No accounts, nothing to log out
+      // Get all accounts
+      const accounts = myMsal.getAllAccounts();
+
+      if (accounts.length === 0) {
+        document.body.innerHTML = "<p>No accounts found to log out from.</p>";
+        return; // No accounts to log out
       }
 
-      const account = currentAccounts[0]; // Use the first account found, typically the logged-in user
-      const logoutRequest = {
-        account: account, // Pass the account object
-        mainWindowRedirectUri: "https://tsasofficial.github.io/logout",
-      };
+      // Display the accounts in a list
+      const accountList = document.createElement("ul");
+      accounts.forEach((account, index) => {
+        const listItem = document.createElement("li");
+        const button = document.createElement("button");
+        button.textContent = `Log out of ${account.username}`;
+        button.onclick = function () {
+          logoutAccount(account);
+        };
+        listItem.appendChild(button);
+        accountList.appendChild(listItem);
+      });
+      document.body.appendChild(accountList);
 
-      async function logoutFunction() {
+      async function logoutAccount(account) {
+        const logoutRequest = {
+          account: account, // Pass the selected account
+          mainWindowRedirectUri: "https://tsasofficial.github.io/logout",
+        };
         await myMsal.logoutPopup(logoutRequest);
-      };
-
-      logoutFunction();
+      }
     });
     </script>
   </head>
   <body>
+    <p>Select an account to log out:</p>
   </body>
 </html>
