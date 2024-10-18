@@ -8,6 +8,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Angkor&family=Belanosima&display=swap" rel="stylesheet">
     <script>
+      function isSafariIOS() {
+        const userAgent = window.navigator.userAgent;
+        const isIOS = /iP(hone|od|ad)/.test(userAgent); // Check if it's an iPhone, iPod, or iPad
+        const isSafari = !!navigator.userAgent.match(/Safari/i) && !navigator.userAgent.match(/CriOS/i); // Ensure it's Safari and not Chrome on iOS
+        return isIOS && isSafari;
+      }
       document.addEventListener("DOMContentLoaded", function () {
         // Open the logout popup
         function openLogoutPopup() {
@@ -18,7 +24,11 @@
           );
           
           if (!popup) {
-            alert("Please enable pop-ups for this site and refresh this page to complete the logout process.");
+            if (isSafariIOS()) {
+              alert("Please enable pop-ups for this by going to Settings > Apps > Safari. After that, refresh this page to complete the logout process.");
+            } else {
+              alert("Please enable pop-ups for this site and refresh this page to complete the logout process.");
+            }
           } else {
             // Check for when the pop-up is closed
             const checkPopupClosed = setInterval(function () {
@@ -64,7 +74,7 @@
         </div>
         <br>
         <div class="normal_font">
-          <font size="4">Close the pop-up after logging out, or close it once it pops up so the next time you login with Microsoft, you will automatically signin with the same account.</font>
+          <font size="4">Close the pop-up after logging out, or close it once it pops up so the next time you login with Microsoft, you will automatically login with the same account.</font>
         </div>
       </center>
     </div>
