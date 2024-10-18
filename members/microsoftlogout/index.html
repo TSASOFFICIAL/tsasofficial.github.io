@@ -10,8 +10,9 @@
     <script>
       function isSafariIOS() {
         const userAgent = window.navigator.userAgent;
-        const isIOS = /iP(hone|od|ad)/.test(userAgent); // Check if it's an iPhone, iPod, or iPad
-        const isSafari = !!navigator.userAgent.match(/Safari/i) && !navigator.userAgent.match(/CriOS/i); // Ensure it's Safari and not Chrome on iOS
+        const platform = window.navigator.platform;
+        const isIOS = /iPhone|iPad|iPod/.test(platform); // Check if the platform is iOS-related
+        const isSafari = /Safari/.test(userAgent) && /Apple/.test(navigator.vendor) && !/CriOS|FxiOS/.test(userAgent); // Ensure it's Safari and not Chrome or Firefox on iOS
         return isIOS && isSafari;
       }
       document.addEventListener("DOMContentLoaded", function () {
