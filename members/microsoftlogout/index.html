@@ -9,12 +9,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Angkor&family=Belanosima&display=swap" rel="stylesheet">
     <script>
       function isSafariIOS() {
-        const userAgent = window.navigator.userAgent;
-        const platform = window.navigator.platform;
-        const isIOS = /iPhone|iPad|iPod/.test(platform); // Check if the platform is iOS-related
-        const isSafari = /Safari/.test(userAgent) && /Apple/.test(navigator.vendor) && !/CriOS|FxiOS/.test(userAgent); // Ensure it's Safari and not Chrome or Firefox on iOS
-        return isIOS && isSafari;
-      }
+    const userAgent = window.navigator.userAgent;
+    const platform = window.navigator.platform;
+    const isIOS = /iPhone|iPad|iPod/.test(platform) || (navigator.maxTouchPoints && navigator.maxTouchPoints > 1 && /MacIntel/.test(platform));
+    // The above checks for iOS devices including iPads that might request the desktop site (which return 'MacIntel' in platform).
+    const isSafari = /Safari/.test(userAgent) && /Apple/.test(navigator.vendor) && !/CriOS|FxiOS/.test(userAgent); // Ensure it's Safari, not Chrome/Firefox on iOS
+    return isIOS && isSafari;
+}
       document.addEventListener("DOMContentLoaded", function () {
         // Open the logout popup
         function openLogoutPopup() {
