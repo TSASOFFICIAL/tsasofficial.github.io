@@ -23,6 +23,8 @@
           <font size = "6">Welcome</font><font size = "6" id="name"><script type="text/javascript">
             if (getCookie("username") == "") {
               window.location.href = "https://tsasofficial.github.io/login";
+            } else if (getCookie("username") == "null") {
+              
             } else {
               document.write(" " + getCookie("username"));
             }
