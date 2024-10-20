@@ -16,3 +16,15 @@ function getCookie(cname) {
 if (getCookie("username") == "") {
 	window.location.href = "https://tsasofficial.github.io/login";
 }
+
+if (getCookie("usingmicrosoftaccount") == "true") {
+
+            let el = document.getElementById('logout_a');
+
+            if (el != null) {
+                el.setAttribute("href", "microsoftlogout");
+            } else {
+                
+            }
+          
+        }
