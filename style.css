@@ -215,15 +215,3 @@ nav ul li a {
 nav ul li a:hover {
     text-decoration: underline;
 }
-
-.cta {
-    background-color: #ff5c5c;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-}
-
-.cta:hover {
-    background-color: #ff1a1a;
-}
