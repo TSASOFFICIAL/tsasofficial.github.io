@@ -19,12 +19,10 @@ if (getCookie("username") == "") {
 
 if (getCookie("usingmicrosoftaccount") == "true") {
 
-            let el = document.getElementById('logout_a');
+            let logout_element = document.querySelector('logout_a');
 
-            if (el != null) {
-                el.setAttribute("href", "microsoftlogout");
-            } else {
-                
+            if (logout_element) {
+                logout_element.setAttribute("href", "microsoftlogout");
             }
           
         }
