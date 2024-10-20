@@ -22,7 +22,8 @@ if (getCookie("usingmicrosoftaccount") == "true") {
             let logout_element = document.querySelector('logout_a');
 
             if (logout_element) {
-                logout_element.setAttribute("href", "microsoftlogout");
+		var a_element = document.getElementById('logout_a')
+                a_element.setAttribute("href", "microsoftlogout");
             }
           
         }
