@@ -17,13 +17,8 @@ if (getCookie("username") == "") {
 	window.location.href = "https://tsasofficial.github.io/login";
 }
 
-let logout_element = document.querySelector('logout_a');
-var a_element = document.getElementById('logout_a');
+var a_element = document.getElementById("logout_a");
 
 if (getCookie("usingmicrosoftaccount") == "true") {
-
-            if (logout_element) {
-                a_element.setAttribute("href", "microsoftlogout");
-            }
-          
-        }
+	a_element.setAttribute("href", "microsoftlogout");
+}
