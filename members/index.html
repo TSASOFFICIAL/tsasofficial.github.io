@@ -35,12 +35,14 @@
         <div class="title_font">
           <font size = "6">Welcome</font><font size = "6" id="name"><script type="text/javascript">
             if (getCookie("username") == "") {
-              window.location.href = "https://tsasofficial.github.io/login";
-            } else if (getCookie("username") == "null") {
-              
-            } else {
-              document.write(" " + getCookie("username"));
-            }
+		    if (window.self !== window.top) {
+			    console.log("This page is in an iFrame.");
+		    } else {
+			    window.location.href = "https://tsasofficial.github.io/login";
+		    }
+	    } else {
+		    document.write(" " + getCookie("username"));
+	    }
           </script></font><noscript><font size = "6"> Non-Javascript User</font></noscript><font size = "6">!</font>
           <br>
           <img class="fully-rounded-img" width="100" height="100" id="profilePicture" alt="A very ugly person, you!"/>
