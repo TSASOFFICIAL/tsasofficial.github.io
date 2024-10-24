@@ -20,8 +20,4 @@ function checkLoginStatus() {
     }
 }
 
-if (window !== window.parent) {
-    // The page is in an iframe   
-} else {
-    checkLoginStatus()
-};
+checkLoginStatus()
