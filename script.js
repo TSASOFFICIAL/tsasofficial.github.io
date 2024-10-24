@@ -14,6 +14,13 @@ function getCookie(cname) {
 	return "";
 };
 
-if (getCookie("username") == "") {
+if ( window !== window.parent ) 
+{
+      // The page is in an iframe   
+} 
+else 
+{     
+      if (getCookie("username") == "") {
 	window.location.href = "https://tsasofficial.github.io/login";
+      };
 };
