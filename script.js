@@ -20,4 +20,8 @@ function checkLoginStatus() {
     }
 }
 
-checkLoginStatus()
+if (window.self !== window.top) {
+	console.log("This page is in an iFrame.");
+} else {
+	checkLoginStatus();
+};
