@@ -14,10 +14,10 @@
               var pictureURL = searchParams.get('picture');
 	            var usingotheroptions = searchParams.get('usingotheroptions');
 	            var usingmicrosoftaccount = searchParams.get('usingmicrosoftaccount');
-              document.cookie = "username=" + username + "; max-age=86400; path=/";
-        	    document.cookie = "picture=" + pictureURL + "; max-age=86400; path=/";
-	            document.cookie = "usingotheroptions=" + usingotheroptions + "; max-age=86400; path=/";
-		          document.cookie = "usingmicrosoftaccount=" + usingmicrosoftaccount + "; max-age=86400; path=/";
+              document.cookie = "username=" + username + "; max-age=86400; SameSite=None; Secure; path=/";
+        	    document.cookie = "picture=" + pictureURL + "; max-age=86400; SameSite=None; Secure; path=/";
+	            document.cookie = "usingotheroptions=" + usingotheroptions + "; max-age=86400; SameSite=None; Secure; path=/";
+		          document.cookie = "usingmicrosoftaccount=" + usingmicrosoftaccount + "; max-age=86400; SameSite=None; Secure; path=/";
               window.location.href = "../";
             }
         </script>
