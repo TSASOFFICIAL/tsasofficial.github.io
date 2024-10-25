@@ -22,11 +22,13 @@
                 <li><div class="normal_font">Settings</div></li>
             </ul>
         </nav>
-      <a id="logout_a" href="https://tsasofficial.github.io/members/logout"><button class="butt"><div class="normal_font"><font size = "4">Logout</font></div></button></a>
+      <a id="logout_a" href="https://tsasofficial.github.io/members/logout"><button class="butt"><div class="normal_font"><font id="logout_font" size = "4">Logout</font></div></button></a>
 	  <script>
 		if (getCookie("usingmicrosoftaccount") == "true") {
 			var a_element = document.getElementById("logout_a");
 			a_element.setAttribute("href", "https://tsasofficial.github.io/members/microsoftlogout");
+		} else if (getCookie("iniframe") == "true") {
+			document.getElementById("logout_font").innerHTML = "End Session";
 		}
 	  </script>
     </header>
