@@ -9,13 +9,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Angkor&family=Belanosima&display=swap" rel="stylesheet">
     <script>
       function onload() {
-        document.cookie = "username=; max-age=1; SameSite=None; Secure; path=/";
-        document.cookie = "picture=; max-age=1; SameSite=None; Secure; path=/";
-        document.cookie = "usingotheroptions=; max-age=1; SameSite=None; Secure; path=/";
-        document.cookie = "usingmicrosoftaccount=; max-age=1; SameSite=None; Secure; path=/";
-        document.cookie = "iniframe=; max-age=1; SameSite=None; Secure; path=/";
-        window.location.href = "../../";
-      }
+        if (window.self !== window.top) {
+          document.cookie = "username=; max-age=1; SameSite=None; Secure; path=/";
+          document.cookie = "picture=; max-age=1; SameSite=None; Secure; path=/";
+          document.cookie = "usingotheroptions=; max-age=1; SameSite=None; Secure; path=/";
+          document.cookie = "usingmicrosoftaccount=; max-age=1; SameSite=None; Secure; path=/";
+          document.cookie = "iniframe=; max-age=1; SameSite=None; Secure; path=/";
+          window.location.href = "../../startsession";
+        } else {
+          document.cookie = "username=; max-age=1; SameSite=None; Secure; path=/";
+          document.cookie = "picture=; max-age=1; SameSite=None; Secure; path=/";
+          document.cookie = "usingotheroptions=; max-age=1; SameSite=None; Secure; path=/";
+          document.cookie = "usingmicrosoftaccount=; max-age=1; SameSite=None; Secure; path=/";
+          document.cookie = "iniframe=; max-age=1; SameSite=None; Secure; path=/";
+          window.location.href = "../../";
+        }
     </script>
   </head>
   <body onload=onload()>
