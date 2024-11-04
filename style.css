@@ -1,0 +1,235 @@
+body{
+	background: url(images/Background.jpg);
+}
+
+.js-only{
+	display: none;
+}
+
+.show{
+	display: block;
+}
+
+.center{
+	margin-left: 115px;
+	margin-right: 115px;
+	background: white;
+	border-radius: 5px;
+}
+
+.container{
+	background: white;
+}
+
+.button{
+	background-color: white;
+	border: 10px solid #008CBA;
+	transition-duration: 0.5s;
+	padding: 15px 32px;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+.button:hover{
+	background-color: #008CBA;
+	border-radius: 5px;
+}
+
+.Text{
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+.left{
+	float: left;
+	width: 50%;
+	padding: 8px;
+}
+
+.right{
+	float: right;
+	width: 50%;
+	padding: 8px;
+}
+
+.left1{
+	float: left;
+	background: white;
+}
+
+.right2{
+	float: right;
+	background: white;
+}
+
+*, *::after, *::before{
+	box-sizing: border-box;
+}
+
+.modal{
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) scale(0);
+	transition: 200ms ease-in-out;
+	border: 1px solid black;
+	border-radius: 10px;
+	z-index: 10;
+	background-color: white;
+	width: 500px;
+	max-width: 80%;
+}
+
+.modal.active{
+	transform: translate(-50%, -50%) scale(1);
+}
+
+.modal-header{
+	padding: 10px 15px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 1px solid black;
+}
+
+.modal-header .title{
+	font-size: 1.25rem;
+	font-weight: bold;
+}
+
+.modal-header .close-button{
+	cursor: pointer;
+	border: none;
+	outline: none;
+	background: none;
+	font-size: 1.25rem;
+	font-weight: bold;
+}
+
+.modal-body{
+	margin-left: 10px;
+}
+	
+#overlay{
+	position: fixed;
+	opacity: 0;
+	transition: 600ms ease-in-out;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, .9);
+	pointer-events: none;
+}
+
+#overlay.active{
+	opacity: 1;
+	pointer-events: all;
+}
+
+.butt{
+	background-color: white;
+	border: 5px solid #008CBA;
+	transition-duration: 0.3s;
+	padding: 7px 16px;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+.butt:hover{
+	background-color: #008CBA;
+	border-radius: 5px;
+}
+
+.title_font{
+  font-family: "Angkor", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.normal_font{
+	font-family: "Belanosima", sans-serif;
+	font-weight: 400;
+	font-style: normal;
+}
+
+.button-disabled{
+	background-color: white;
+	border: 10px solid #008CBA;
+	transition-duration: 0.5s;
+	padding: 15px 32px;
+	cursor: not-allowed;
+	border-radius: 5px;
+}
+
+.hidden{
+    display: none;
+}
+
+.fully-rounded-img{
+	border-radius: 50%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 10%;
+    background-color: #333;
+    color: white;
+}
+
+.logo a {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+.welcomeViewers-gradient {
+  position: relative;
+  overflow: hidden;
+  background-image: url('images/welcomeViewers.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.TSASshows-gradient {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-image: url('images/TSASshows.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}

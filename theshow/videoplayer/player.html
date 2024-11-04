@@ -1,0 +1,74 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+
+<head>  
+	<title>Video Player</title> 
+	<link rel="stylesheet"
+		href= 
+"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"> 
+	<link rel="stylesheet"
+		href="style.css">
+</head> 
+
+<body onload="onload()"> 	
+	<!-- Video container -->
+	<div class="video-container"> 
+		<img src= 
+"https://tsasofficial.github.io/images/favicon.png"
+			id="video-thumbnail"> 
+		<video id="video">
+			<script>
+				function onload() {
+					var VidId = parent.window.location.search.substring(1);
+					document.getElementById("video").setAttribute("src", VidId);
+					console.log("VidId: " + VidId);
+				}
+			</script>
+		</video> 
+		<!-- Controlers continer -->
+		<div class="controls"> 
+			
+		<!-- Left controller div -->
+			<div class="left"> 
+				<button id="skipminus-10"> 
+					<i class="fa-solid fa-backward"></i> 
+				</button> 
+				<button id="play-pause"> 
+					<i class="fa-solid fa-play"></i> 
+				</button> 
+				<button id="skip-10"> 
+					<i class="fa-solid fa-forward"></i> 
+				</button> 
+			</div> 
+			
+	<!-- div for progress bar -->
+			<div class="video-timer"> 
+				<span id="current-time">00:00</span> 
+				<span id="separator">/</span> 
+				<span id="max-duration">00:00</span> 
+			</div> 
+			<div class="playback-line"> 
+				<div class="progress-bar"></div> 
+
+			</div> 
+			
+			<!-- Right controller div -->
+			<div class="right"> 
+				<div class="volume-container"> 
+					<div id="mute"> 
+						<i class="fas fa-volume-up"></i> 
+					</div> 
+					<input type="range"
+						id="volume"
+						min="0"
+						max="1"
+						step="0.01"
+						value="1"> 
+				</div> 
+			</div> 
+		</div> 
+	</div> 
+	<script src="script.js"></script> 
+</body> 
+
+</html>

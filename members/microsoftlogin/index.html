@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login</title>
+    <link rel='shortcut icon' type='image/png' href='../../images/favicon.jpg'>
+    <link rel='stylesheet' type='text/css' href='../../style.css'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Angkor&family=Belanosima&display=swap" rel="stylesheet">
+    <script src="https://alcdn.msauth.net/browser/2.28.1/js/msal-browser.min.js"></script>
+  </head>
+  <body>
+    <script>
+    // MSAL.js configuration
+    const msalConfig = {
+      auth: {
+        clientId: "244e92a4-1f38-485b-9100-b9581efa4a75",  // Same clientId from part 1
+        authority: "https://login.microsoftonline.com/common",  // Same authority from part 1
+        redirectUri: "https://tsasofficial.github.io/members/microsoftlogin",  // Same redirect URI as part 1
+      },
+      cache: {
+        cacheLocation: "sessionStorage",
+        storeAuthStateInCookie: false
+      }
+    };
+    var searchParams = new URLSearchParams(window.location.search);
+    var accessToken = searchParams.get('token');
+    fetchUserProfile(accessToken);
+
+    // Fetch user profile from Microsoft Graph API
+    async function fetchUserProfile(accessToken) {
+      try {
+        const response = await fetch("https://graph.microsoft.com/v1.0/me", {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            'Content-Type': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          var profileData = await response.json();
+          var givenName = profileData.givenName;
+          var familyName = profileData.surname;
+          var userId = profileData.userPrincipalName;
+
+          console.log("Given Name:", givenName);
+          console.log("Family Name:", familyName);
+          console.log("Microsoft Account ID:", userId);
+          
+          // Once done, you can proceed to close the window or interaction if needed
+          window.close();
+
+        } else {
+          console.error("Error fetching profile:", response.statusText);
+        }
+      } catch (error) {
+        console.error("Error fetching profile:", error);
+      }
+
+      try {
+        const photoEndpoint = "https://graph.microsoft.com/v1.0/me/photo/$value";
+        const response = await fetch(photoEndpoint, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          }
+        });
+
+        if (response.ok) {
+          const blob = await response.blob();  // Get the image data as a Blob
+          const imageUrl = URL.createObjectURL(blob);  // Create a URL for the Blob
+          redirectToTarget(givenName, imageUrl);
+          
+        } else {
+          console.log("No profile picture found.");
+          redirectToTarget(givenName, "");
+        }
+      } catch (error) {
+        console.error("Error fetching profile picture:", error);
+        redirectToTarget(givenName, "");
+      }
+    }
+
+    // Function to handle redirection
+    function redirectToTarget(name, picture) {
+      parent.location.href = `../cookiemaker?name=${name}&picture=${picture}&usingotheroptions=true&usingmicrosoftaccount=true`;
+    }
+
+    </script>
+  </body>
+</html>

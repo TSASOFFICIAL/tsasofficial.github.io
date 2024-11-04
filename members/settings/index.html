@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>TSAS Official</title>
+    <link rel="stylesheet" type="text/css" href="../../style.css">
+    <link rel="shortcut icon" type="image/png" href="../../images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Angkor&family=Belanosima&display=swap" rel="stylesheet">
+    <script src="../../script.js"></script>
+	<script src="https://tsasofficial.github.io/members/header.js"></script>
+  </head>
+  <body>
+    <header id="header">
+    </header>
+    <div class="center">
+      <a href="../"><button class="button button"><div class="normal_font"><font size = "4">Back</font></div></button></a>
+      <center>
+        <div class="title_font">
+          <font size = "6">Settings</font>
+        </div>
+        <br>
+        <br>
+        <br>
+        <a id="account-button-link" href="account"><button id="account-button" class="button button"><div class="normal_font"><font size = "4">Your Account</font></div></button></a>
+	<script>
+	  if (getCookie("usingotheroptions") == "true" || getCookie("iniframe") == "true") {
+            var account_button = document.getElementById("account-button");
+            var account_button_link = document.getElementById("account-button-link");
+            account_button.setAttribute("disabled", "");
+            account_button.setAttribute("class", "button-disabled");
+            account_button_link.removeAttribute("href");
+            document.write("<div class='normal_font'><font size='3'>*Not Available with a Google Account, Microsoft Account, or when not Logged In*</font></div>");
+          };
+	</script>
+        <br>
+        <br>
+        <a id="newsletter-button-link" href="newsletter"><button id="newsletter-button" class="button button"><div class="normal_font"><font size = "4">Sign-Up for our Newsletter</font></div></button></a>
+	<script>
+	  if (getCookie("iniframe") == "true") {
+	    var newsletter_button = document.getElementById("newsletter-button");
+            var newsletter_button_link = document.getElementById("newsletter-button-link");
+	    newsletter_button.setAttribute("disabled", "");
+            newsletter_button.setAttribute("class", "button-disabled");
+            newsletter_button_link.removeAttribute("href");
+            document.write("<div class='normal_font'><font size='3'>*Not Available when not Logged In*</font></div>");
+	  };
+        </script>
+        <br>
+        <br>
+      </center>
+    </div>
+  </body>
+</html>

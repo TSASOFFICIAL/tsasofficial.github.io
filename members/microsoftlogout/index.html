@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Logging you out...</title>
+    <link rel="stylesheet" type="text/css" href="../../style.css">
+    <link rel="shortcut icon" type="image/png" href="../../images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Angkor&family=Belanosima&display=swap" rel="stylesheet">
+    <script>
+      function isSafariIOS() {
+    const userAgent = window.navigator.userAgent;
+    const platform = window.navigator.platform;
+    const isIOS = /iPhone|iPad|iPod/.test(platform) || (navigator.maxTouchPoints && navigator.maxTouchPoints > 1 && /MacIntel/.test(platform));
+    // The above checks for iOS devices including iPads that might request the desktop site (which return 'MacIntel' in platform).
+    const isSafari = /Safari/.test(userAgent) && /Apple/.test(navigator.vendor) && !/CriOS|FxiOS/.test(userAgent); // Ensure it's Safari, not Chrome/Firefox on iOS
+    return isIOS && isSafari;
+}
+      document.addEventListener("DOMContentLoaded", function () {
+        // Open the logout popup
+        function openLogoutPopup() {
+          const popup = window.open(
+            "https://login.microsoftonline.com/common/oauth2/v2.0/logout?post_logout_redirect_uri=https://tsasofficial.github.io/logout",
+            "LogoutPopup",
+            "width=601,height=601"
+          );
+          
+          if (!popup) {
+            if (isSafariIOS()) {
+              alert("Please enable pop-ups for this site by going to Settings > Apps > Safari. After that, refresh this page to complete the logout process.");
+            } else {
+              alert("Please enable pop-ups for this site and refresh this page to complete the logout process.");
+            }
+          } else {
+            // Check for when the pop-up is closed
+            const checkPopupClosed = setInterval(function () {
+              if (popup.closed) {
+                clearInterval(checkPopupClosed);
+                // Redirect the main page after pop-up closes
+                window.location.href = "https://tsasofficial.github.io/members/logout";
+              }
+            }, 500);
+          }
+        }
+
+        // Trigger the popup function
+        openLogoutPopup();
+      });
+    </script>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f0f0f0; /* optional, to give some background contrast */
+      }
+
+      .complete-center {
+        background: white;
+        border-radius: 5px;
+        width: 300px; /* or any width you'd like */
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* optional, for a better visual */
+      }
+    </style>
+  </head>
+  <div class="complete-center">
+      <center>
+        <div class="title_font">
+          <font size="6">*Important!*</font>
+        </div>
+        <br>
+        <div class="normal_font">
+          <font size="4">Close the pop-up after logging out, or close it once it pops up so the next time you login with Microsoft, you will automatically login with the same account.</font>
+        </div>
+      </center>
+    </div>
+  <body>
+  </body>
+</html>

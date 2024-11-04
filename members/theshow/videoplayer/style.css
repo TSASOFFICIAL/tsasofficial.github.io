@@ -1,0 +1,130 @@
+/* Style.css */
+* { 
+	margin: 0; 
+	padding: 0; 
+} 
+
+.video-container { 
+	position: absoulute; 
+	margin: 0 auto; 
+} 
+
+#video-thumbnail { 
+	width: 100%; 
+	height: 100%; 
+	position: absoulute; 
+} 
+
+#video, 
+img { 
+	width: 100%; 
+	height: 100%; 
+	position: absoulute; 
+} 
+
+.controls { 
+	position: absolute; 
+	bottom: 0px; 
+	left: 0; 
+	right: 0; 
+	height: 20px;
+	background-color: rgba( 
+		37,
+		150,
+		190,
+		0.5
+	); 
+	display: flex; 
+	justify-content: space-between; 
+	align-items: center; 
+	padding: 10px; 
+	opacity: 0; 
+	transition: opacity 0.3s ease-in-out; 
+} 
+
+.controls button { 
+	background-color: transparent; 
+	border: none; 
+	color: #fff; 
+	font-size: 20px; 
+	cursor: pointer; 
+	outline: none; 
+} 
+
+.left { 
+	position: relative; 
+	top: 1%; 
+	width: 70px; 
+	display: flex; 
+	justify-content: space-between; 
+} 
+
+.video-timer { 
+	position: relative; 
+	top: 5.2px; 
+	right: 6px; 
+	display: flex; 
+	flex-direction: row; 
+	color: #efefef; 
+	margin-left: 15px; 
+	font-size: 12px; 
+} 
+
+#separator { 
+	margin: 0 5px; 
+	font-size: 16px; 
+	font-family: "Open sans"; 
+} 
+
+.right { 
+	position: relative; 
+	padding: 10px; 
+	top: 1.5px; 
+} 
+
+.fa-volume-up, 
+.fa-solid { 
+	font-size: small; 
+	padding: 5px; 
+	color: rgb(255, 255, 255); 
+} 
+
+button, 
+input { 
+	background-color: transparent; 
+	border: none; 
+	cursor: pointer; 
+	font-size: 20px; 
+} 
+
+.volume-container { 
+	display: flex; 
+	align-items: center; 
+} 
+
+#volume { 
+	position: relative; 
+	left: 5px; 
+	width: 50px; 
+	height: 3px; 
+} 
+
+#mute { 
+	cursor: pointer; 
+} 
+
+.playback-line { 
+	position: relative; 
+	top: 2.7px; 
+	height: 4px; 
+	background-color: #ddd; 
+	width: 40%; 
+	cursor: pointer; 
+} 
+
+.progress-bar { 
+	height: 100%; 
+	width: 0; 
+	background-color: #0078d4; 
+	transition: width 0.1s linear; 
+}

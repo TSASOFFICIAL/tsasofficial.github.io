@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>TSAS Official</title>
+  <link rel="shortcut icon" type="image/png" href="https://tsasofficial.github.io/images/favicon.png">
+  <style>
+  body{
+	background: url(https://tsasofficial.github.io/images/Background.jpg);
+}
+
+.js-only{
+	display: none;
+}
+
+.show{
+	display: block;
+}
+
+.center{
+	margin-left: 115px;
+	margin-right: 115px;
+	background: white;
+}
+
+.container{
+	background: white;
+}
+
+.button{
+	background-color: white;
+	border: 10px solid #008CBA;
+	transition-duration: 0.5s;
+	padding: 15px 32px;
+	cursor: pointer;
+}
+
+.button:hover{
+	background-color: #008CBA;
+}
+
+.Text{
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+.left{
+	float: left;
+	width: 50%;
+}
+
+.right{
+	float: right;
+	width: 50%;
+}
+
+.left1{
+	float: left;
+	background: white;
+}
+
+.right2{
+	float: right;
+	background: white;
+}
+
+*, *::after, *::before{
+	box-sizing: border-box;
+}
+
+.modal{
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) scale(0);
+	transition: 200ms ease-in-out;
+	border: 1px solid black;
+	border-radius: 10px;
+	z-index: 10;
+	background-color: white;
+	width: 500px;
+	max-width: 80%;
+}
+
+.modal.active{
+	transform: translate(-50%, -50%) scale(1);
+}
+
+.modal-header{
+	padding: 10px 15px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 1px solid black;
+}
+
+.modal-header .title{
+	font-size: 1.25rem;
+	font-weight: bold;
+}
+
+.modal-header .close-button{
+	cursor: pointer;
+	border: none;
+	outline: none;
+	background: none;
+	font-size: 1.25rem;
+	font-weight: bold;
+}
+
+.modal-body{
+	margin-left: 10px;
+}
+	
+#overlay{
+	position: fixed;
+	opacity: 0;
+	transition: 600ms ease-in-out;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, .9);
+	pointer-events: none;
+}
+
+#overlay.active{
+	opacity: 1;
+	pointer-events: all;
+}
+
+.butt{
+	background-color: white;
+	border: 5px solid #008CBA;
+	transition-duration: 0.3s;
+	padding: 7px 16px;
+	cursor: pointer;
+}
+
+.butt:hover{
+	background-color: #008CBA;
+}
+</style>
+</head>
+<body>
+  <div class="center">
+    <center>
+      <br>
+      <font face = "Verdana" size = "6">Weekly Report</font>
+      <br>
+      <font face = "Verdana" size = "5">Spider-Cam Vol. 2 has been finished!</font>
+      <br>
+      <br>
+      <font face = "Verdana" size = "4"><a href="https://docs.google.com/presentation/d/1LlFH6dR7sNCAmMDZG5PwkofLZtqUl7csTACkuMO5eTY/mobilepresent"><button class="button button">Spider-Cam</button></a></font>
+      <br>
+      <br>
+    </center>
+    <font face = "Verdana" size = "1">Newsletter made with love and care by Dominic! T.S.A.S. was originally made by Eli, Kyle, Christian, and Bobby.</font>
+  </div>
+</body>
+</html>

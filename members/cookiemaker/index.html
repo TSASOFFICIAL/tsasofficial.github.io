@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Loading...</title>
+        <link rel="stylesheet" type="text/css" href="../../style.css">
+        <link rel="shortcut icon" type="image/png" href="../../images/favicon.png">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Angkor&family=Belanosima&display=swap" rel="stylesheet">
+        <script>
+            function onload() {
+              const searchParams = new URLSearchParams(window.location.search);
+              var username = searchParams.get('name');
+              var pictureURL = searchParams.get('picture');
+	            var usingotheroptions = searchParams.get('usingotheroptions');
+	            var usingmicrosoftaccount = searchParams.get('usingmicrosoftaccount');
+		    var iniframe = searchParams.get('iniframe');
+              document.cookie = "username=" + username + "; max-age=86400; SameSite=None; Secure; path=/";
+        	    document.cookie = "picture=" + pictureURL + "; max-age=86400; SameSite=None; Secure; path=/";
+	            document.cookie = "usingotheroptions=" + usingotheroptions + "; max-age=86400; SameSite=None; Secure; path=/";
+		          document.cookie = "usingmicrosoftaccount=" + usingmicrosoftaccount + "; max-age=86400; SameSite=None; Secure; path=/";
+		    document.cookie = "iniframe=" + iniframe + "; max-age=86400; SameSite=None; Secure; path=/";
+              window.location.href = "../";
+            }
+        </script>
+    </head>
+    <body onload=onload()>
+    </body>
+</html>

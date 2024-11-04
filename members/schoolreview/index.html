@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>TSAS Official</title>
+    <link rel="stylesheet" type="text/css" href="../../style.css">
+    <link rel="shortcut icon" type="image/png" href="../../images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Angkor&family=Belanosima&display=swap" rel="stylesheet">
+    <script src="../../script.js"></script>
+  </head>
+  <body>
+    <div class="center">
+      <a href="../"><button class="button button"><div class="normal_font"><font size = "4">Back</font></div></button></a>
+      <center>
+        <div class="title_font">
+          <font size = "6">Today - </font><font id="Month" size = "6"></font>
+          <script>
+            const currentDate = new Date(); // Get the current date
+            const currentMonth = currentDate.getMonth(); // Get the current month (0-11)
+            const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            document.getElementById("Month").innerHTML = monthNames[currentMonth]; // Display the current month
+          </script>
+          <font id="Day" size = "6"></font>
+          <script>
+            const currentDay = currentDate.getDate();
+            document.getElementById("Day").innerHTML = currentDay;
+          </script>
+        </div>
+        <br>
+        <div class="normal_font">
+          <font size = "5">
+            memorial day weekend *NO SCHOOL MONDAY*
+          </font>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="title_font">
+          <font size = "6">Yesterday - </font><font id="Month2" size = "6"></font>
+          <script>
+            const yesterday = new Date(currentDate.setDate(currentDate.getDate() - 1));
+            const yesterdayMonth = yesterday.getMonth();
+            document.getElementById("Month2").innerHTML = monthNames[yesterdayMonth];
+          </script>
+          <font id="Day2" size = "6"></font>
+          <script>
+            let yesterday2 = new Date(currentDate);
+            let dayNumber = yesterday2.getDate(currentDate.getDate() - 1);
+            document.getElementById("Day2").innerHTML = dayNumber;
+          </script>
+        </div>
+        <br>
+        <div class="normal_font">
+          <font size = "5">
+            memorial day weekend *NO SCHOOL MONDAY*
+          </font>
+        </div>
+        <br>
+      </center>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>TSAS Official</title>
+    <link rel="stylesheet" type="text/css" href="../style.css">
+    <link rel="shortcut icon" type="image/png" href="../images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Angkor&family=Belanosima&display=swap" rel="stylesheet">
+    <script src="../script.js"></script>
+    <script src="https://tsasofficial.github.io/members/header.js"></script>
+  </head>
+  <body>
+    <header id="header">
+    </header>
+    <div class="center">
+      <center>
+        <div class="title_font">
+          <font size = "6">Welcome</font><font size = "6" id="name"><script type="text/javascript">
+            if (getCookie("username") == "") {
+		    if (window.self !== window.top) {
+			    console.log("This page is in an iFrame.");
+		    } else {
+			    window.location.href = "https://tsasofficial.github.io/login";
+		    }
+	    } else {
+		    document.write(" " + getCookie("username"));
+	    }
+          </script></font><noscript><font size = "6"> Non-Javascript User</font></noscript><font size = "6">!</font>
+          <br>
+          <img class="fully-rounded-img" width="100" height="100" id="profilePicture" alt="A very ugly person, you!"/>
+          <script type="text/javascript">
+            var element = document.getElementById("profilePicture");
+            let pictureCookie = getCookie("picture");
+            if (pictureCookie === null || pictureCookie === "" || pictureCookie === "null" || pictureCookie === "undefined") {
+              element.setAttribute("src", "../images/DefaultProfilePicture.png");
+            } else {
+              element.setAttribute("src", getCookie("picture"));
+            };
+	    
+    	    const profileimg = document.getElementById("profilePicture");
+    	    if (profileimg) {
+      	      profileimg.onerror = () => {
+        	profileimg.onerror = null; // Prevent loop
+                profileimg.src = '../images/DefaultProfilePicture.png';
+              };
+            };
+          </script>
+        </div>
+        <br>
+        <div class="normal_font">
+          <font size = "5">Access all T.S.A.S.'s entertainment videos, shows, and more from this website!</font>
+        </div>
+        <br>
+        <br>
+        <br>
+        <a target="_blank" href="https://www.youtube.com/@TSASOfficial69"><button class="button button"><div class="normal_font"><font size = "4">Official YT Channel</font></div></button></a>
+        <br>
+        <br>
+        <a href='theshow'><button class="button button"><div class="normal_font"><font size = "4">Shows</font></div></button></a>
+        <br>
+        <br>
+        <a href='fanart?'><button class="button button"><div class="normal_font"><font size = "4">Fan Art</font></div></button></a>
+        <br>
+        <br>
+        <a href='downloads'><button class="button button"><div class="normal_font"><font size = "4">Downloads</font></div></button></a>
+        <br>
+        <br>
+        <a href="settings"><button class="button button"><div class="normal_font"><font size = "4">Settings</font></div></button></a>
+        <br>
+        <br>
+      </center>
+      <div class="normal_font">
+        <font size = "1">Website made with love and care by Dominic! T.S.A.S. was originally made by Eli, Kyle, Christian, and Bobby.</font>
+        <a href="../privacypolicy"><font size = "1">Our Privacy Policy</font></a>
+      </div>
+    </div>
+  </body>
+</html>
