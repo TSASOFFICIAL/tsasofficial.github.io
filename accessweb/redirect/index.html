@@ -7,37 +7,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Angkor&family=Belanosima&display=swap" rel="stylesheet">
-<style>
-.center2 {
-    margin: 10px auto;
-    padding: 20px;
-    background: white;
-    border-radius: 5px;
-    max-width: 90%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-.iframe-container {
-    width: 100%;
-    height: 500px;
-    border: 1px solid black;
-    margin-top: 20px;
-    overflow: hidden;
-    border-radius: 5px;
-}
-iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-}
-</style>
 </head>
 <body>
-<center>
-<div class="center2">
-    <div class="iframe-container">
-        <iframe src="" id="frame"></iframe>
-    </div>
-</div>
 <script>
 // Extract the 'website' query parameter from the URL
 const searchParams = new URLSearchParams(window.top.location.search);
@@ -47,7 +18,7 @@ const url = searchParams.get("website");
 function isValidURL(url) {
     try {
         const validUrl = new URL(url);
-        return validUrl.protocol === "http:" || validUrl.protocol === "https:";
+        return validUrl.protocol === "https:";
     } catch (e) {
         return false;
     }
@@ -55,12 +26,10 @@ function isValidURL(url) {
 
 // Check if the 'website' parameter exists and is valid
 if (url && isValidURL(url)) {
-    const iframe = document.getElementById("frame");
-    iframe.src = decodeURIComponent(url);
+    location.href = decodeURIComponent(url);
 } else {
     console.error("Invalid or missing 'website' query parameter.");
 }
 </script>
-</center>
 </body>
 </html>
