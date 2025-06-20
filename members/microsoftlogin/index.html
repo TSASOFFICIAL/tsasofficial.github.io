@@ -25,6 +25,7 @@
     };
     var searchParams = new URLSearchParams(window.location.search);
     var accessToken = searchParams.get('token');
+	var inApp = searchParams.get('inapp');
     fetchUserProfile(accessToken);
 
     // Fetch user profile from Microsoft Graph API
@@ -80,11 +81,16 @@
       }
     }
 
-    // Function to handle redirection
-    function redirectToTarget(name, picture) {
-      parent.location.href = `../cookiemaker?name=${name}&picture=${picture}&usingotheroptions=true&usingmicrosoftaccount=true`;
-    }
-
+	if inApp = true {	
+		// Function to handle redirection
+		function redirectToTarget(name, picture) {
+			parent.location.href = `../cookiemaker?name=${name}&picture=${picture}&usingotheroptions=true&usingmicrosoftaccount=true&inapp=true`;
+		}
+	} else {
+		function redirectToTarget(name, picture) {
+			parent.location.href = `../cookiemaker?name=${name}&picture=${picture}&usingotheroptions=true&usingmicrosoftaccount=true`;
+		}
+	}
     </script>
   </body>
 </html>
