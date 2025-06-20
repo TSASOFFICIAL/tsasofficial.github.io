@@ -80,12 +80,13 @@
       }
     }
 	var inApp = searchParams.get('inapp');
-	if inApp = "true" {	
+	if (inApp = "true") {	
 		// Function to handle redirection
 		function redirectToTarget(name, picture) {
 			parent.location.href = `../cookiemaker?name=${name}&picture=${picture}&usingotheroptions=true&usingmicrosoftaccount=true&inapp=true`;
 		}
 	} else {
+		// Function to handle redirection
 		function redirectToTarget(name, picture) {
 			parent.location.href = `../cookiemaker?name=${name}&picture=${picture}&usingotheroptions=true&usingmicrosoftaccount=true`;
 		}
