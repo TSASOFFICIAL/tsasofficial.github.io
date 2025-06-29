@@ -12,11 +12,16 @@ document.addEventListener("DOMContentLoaded", function() {
     const logoDiv = document.createElement('div');
     logoDiv.className = 'logo';
 
+    // Wrap image in an anchor tag
+    const logoLink = document.createElement('a');
+    logoLink.href = 'https://tsasofficial.github.io/';
+
     const img = document.createElement('img');
     img.src = 'https://tsasofficial.github.io/images/header.png';
     img.height = 30;
 
-    logoDiv.appendChild(img);
+    logoLink.appendChild(img);
+    logoDiv.appendChild(logoLink);
     header.appendChild(logoDiv);
 
     // Create the navigation menu
@@ -47,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function() {
             link.appendChild(div);
             li.appendChild(link);
         } else {
-            li.appendChild(div); // For 'Home' as a non-link item
+            li.appendChild(div); // For non-link item
         }
 
         ul.appendChild(li);
@@ -56,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function() {
     nav.appendChild(ul);
     header.appendChild(nav);
 
-    // Create the logout button
+    // Create the login button
     const loginLink = document.createElement('a');
     loginLink.id = 'login_a';
     loginLink.href = 'https://tsasofficial.github.io/login';
