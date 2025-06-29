@@ -7,18 +7,27 @@ document.addEventListener("DOMContentLoaded", function() {
         console.error("Header element with ID 'header' not found.");
         return;
     }
-
+    
     // Create the logo div
     const logoDiv = document.createElement('div');
     logoDiv.className = 'logo';
-
+    
+    // Create the anchor element
+    const logoLink = document.createElement('a');
+    logoLink.href = 'https://tsasofficial.github.io/members';
+    
+    // Create the image element
     const img = document.createElement('img');
     img.src = 'https://tsasofficial.github.io/images/header.png';
     img.height = 30;
-
-    logoDiv.appendChild(img);
+    
+    // Append the image to the anchor, then anchor to the logo div
+    logoLink.appendChild(img);
+    logoDiv.appendChild(logoLink);
+    
+    // Finally, append the logo div to the header
     header.appendChild(logoDiv);
-
+    
     // Create the navigation menu
     const nav = document.createElement('nav');
 
