@@ -1,49 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Logging you out...</title>
-    <link rel="stylesheet" type="text/css" href="../../style.css">
-    <link rel="shortcut icon" type="image/png" href="../../images/favicon.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Angkor&family=Belanosima&display=swap" rel="stylesheet">
-    <script>
-      
-      function getCookie(cname) {
-      	let name = cname + "=";
-      	let decodedCookie = decodeURIComponent(document.cookie);
-      	let ca = decodedCookie.split(';');
-      	for(let i = 0; i < ca.length; i++) {
-      		let c = ca[i];
-      		while (c.charAt(0) == ' ') {
-      			c = c.substring(1);
-      		}
-      		if (c.indexOf(name) == 0) {
-      			return c.substring(name.length, c.length);
-      		}
-      	};
-      	return "";
-      };
-      
-      if (window.self !== window.top) {
-        document.cookie = "username=; max-age=1; SameSite=None; Secure; path=/";
-        document.cookie = "picture=; max-age=1; SameSite=None; Secure; path=/";
-        document.cookie = "usingotheroptions=; max-age=1; SameSite=None; Secure; path=/";
-        document.cookie = "usingmicrosoftaccount=; max-age=1; SameSite=None; Secure; path=/";
-        document.cookie = "iniframe=; max-age=1; SameSite=None; Secure; path=/";
-        document.cookie = "inapp=; max-age=1; SameSite=None; Secure; path=/";
-        window.location.href = "../../startsession";
-      } else {
-        document.cookie = "username=; max-age=1; SameSite=None; Secure; path=/";
-        document.cookie = "picture=; max-age=1; SameSite=None; Secure; path=/";
-        document.cookie = "usingotheroptions=; max-age=1; SameSite=None; Secure; path=/";
-        document.cookie = "usingmicrosoftaccount=; max-age=1; SameSite=None; Secure; path=/";
-        document.cookie = "iniframe=; max-age=1; SameSite=None; Secure; path=/";
-        document.cookie = "inapp=; max-age=1; SameSite=None; Secure; path=/";
-        window.location.href = "../../";
-      };
-    </script>
-  </head>
-  <body>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <title>Logging you out...</title>
+  <link rel="stylesheet" type="text/css" href="../../style.css">
+  <link rel="shortcut icon" type="image/png" href="../../images/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Angkor&family=Belanosima&display=swap" rel="stylesheet">
+  <script>
+    // List of all cookies to clear
+    const cookiesToClear = [
+      "username",
+      "picture",
+      "usingotheroptions",
+      "usingmicrosoftaccount",
+      "iniframe",
+      "inapp"
+    ];
+
+    // Function to expire a cookie
+    function clearCookie(name) {
+      document.cookie = name + "=; max-age=0; path=/; SameSite=None; Secure";
+    }
+
+    // Clear all cookies
+    cookiesToClear.forEach(clearCookie);
+
+    // Redirect user after clearing
+    if (window.self !== window.top) {
+      // In iframe: go back to login/start session iframe
+      window.parent.location.href = "../../startsession";
+    } else {
+      // Not in iframe: go back to homepage
+      window.location.href = "../../";
+    }
+  </script>
+</head>
+<body>
+  <div class="center">
+    <p class="normal_font">Logging you out...</p>
+  </div>
+</body>
 </html>
