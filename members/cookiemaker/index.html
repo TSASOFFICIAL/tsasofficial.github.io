@@ -22,7 +22,7 @@
 
       try {
         // Validate token with your PHP API
-        const response = await fetch(`https://dominic.eu5.org/TSAS/validateToken?token=${encodeURIComponent(token)}`);
+        const response = await fetch(`https://dominic.eu5.org/TSAS/validateToken/?token=${encodeURIComponent(token)}`);
         const data = await response.json();
 
         if (!data.valid) {
