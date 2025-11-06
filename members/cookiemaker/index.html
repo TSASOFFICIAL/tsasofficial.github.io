@@ -1,36 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<title>Loading...</title>
-		<link rel="stylesheet" type="text/css" href="../../style.css">
-        	<link rel="shortcut icon" type="image/png" href="../../images/favicon.png">
-        	<link rel="preconnect" href="https://fonts.googleapis.com">
-        	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        	<link href="https://fonts.googleapis.com/css2?family=Angkor&family=Belanosima&display=swap" rel="stylesheet">
-        	<script>
-			function onload() {
-				const searchParams = new URLSearchParams(window.location.search);
-		    		var username = searchParams.get('name');
-		    		var pictureURL = searchParams.get('picture');
-		    		var usingotheroptions = searchParams.get('usingotheroptions');
-		    		var usingmicrosoftaccount = searchParams.get('usingmicrosoftaccount');
-		    		var iniframe = searchParams.get('iniframe');
-		    		var inapp = searchParams.get('inapp');
-				console.log(inapp);
-		    		document.cookie = "username=" + username + "; max-age=86400; SameSite=None; Secure; path=/";
-		    		document.cookie = "picture=" + pictureURL + "; max-age=86400; SameSite=None; Secure; path=/";
-		    		document.cookie = "usingotheroptions=" + usingotheroptions + "; max-age=86400; SameSite=None; Secure; path=/";
-		    		document.cookie = "usingmicrosoftaccount=" + usingmicrosoftaccount + "; max-age=86400; SameSite=None; Secure; path=/";
-		    		document.cookie = "iniframe=" + iniframe + "; max-age=86400; SameSite=None; Secure; path=/";
-				document.cookie = "inapp=" + inapp + "; max-age=86400; SameSite=None; Secure; path=/";
-		    		if (inapp === "true") {
-			     		window.location.href = "ms-appx:///Assets/successfulLogin.html";
-		    		} else {
-			    		window.location.href = "../";
-		    		}
-	    		}
-		</script>
-	</head>
-	<body onload=onload()>
-	</body>
+<head>
+  <meta charset="UTF-8">
+  <title>Loading...</title>
+  <link rel="stylesheet" type="text/css" href="../../style.css">
+  <link rel="shortcut icon" type="image/png" href="../../images/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Angkor&family=Belanosima&display=swap" rel="stylesheet">
+  <script>
+    async function onload() {
+      const params = new URLSearchParams(window.location.search);
+      const token = params.get("token");
+
+      if (!token) {
+        // No token in URL → force re-login
+        alert("You must log in first.");
+        window.location.href = "../../";
+        return;
+      }
+
+      try {
+        // Validate token with your PHP API
+        const response = await fetch(`https://dominic.eu5.org/TSAS/validateToken.php?token=${encodeURIComponent(token)}`);
+        const data = await response.json();
+
+        if (!data.valid) {
+          alert("Invalid or expired login session. Please log in again.");
+          window.location.href = "../../";
+          return;
+        }
+
+        // Token is valid — make cookies
+        const username = data.name;
+        let pictureURL = "";
+
+        if (data.pictureUrl && data.pictureUrl.trim() !== "") {
+          pictureURL = data.pictureUrl;
+        } else if (data.image_data && data.image_type) {
+          pictureURL = `data:${data.image_type};base64,${data.image_data}`;
+        }
+
+        // Create cookies (1 day)
+        const cookieLife = 86400; // seconds
+        const cookieOptions = "; max-age=" + cookieLife + "; SameSite=None; Secure; path=/";
+
+        document.cookie = "username=" + encodeURIComponent(username) + cookieOptions;
+        document.cookie = "picture=" + encodeURIComponent(pictureURL) + cookieOptions;
+        document.cookie = "usingotheroptions=false" + cookieOptions;
+        document.cookie = "usingmicrosoftaccount=false" + cookieOptions;
+        document.cookie = "iniframe=false" + cookieOptions;
+        document.cookie = "inapp=false" + cookieOptions;
+
+        // Redirect to members page
+        window.location.href = "../";
+
+      } catch (err) {
+        console.error("Token validation failed:", err);
+        alert("Error verifying login. Please try again.");
+        window.location.href = "../../";
+      }
+    }
+  </script>
+</head>
+<body onload="onload()">
+  <div class="center">
+    <div class="title_font">
+      <font size="6">Validating login...</font>
+    </div>
+    <div class="normal_font">
+      <font size="4">Please wait while we verify your session.</font>
+    </div>
+  </div>
+</body>
 </html>
