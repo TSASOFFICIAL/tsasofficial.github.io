@@ -12,66 +12,67 @@
     async function onload() {
       const params = new URLSearchParams(window.location.search);
       const token = params.get("token");
-
+    
       if (!token) {
-        // No token in URL → force re-login
         alert("You must log in first.");
         window.location.href = "../../";
         return;
       }
-
+    
       try {
-        // Validate token with your PHP API
+        // Validate token with PHP API
         const response = await fetch(`https://dominic.eu5.org/TSAS/validateToken/?token=${encodeURIComponent(token)}`);
         const data = await response.json();
-
+    
         if (!data.valid) {
           alert("Invalid or expired login session. Please log in again.");
           window.location.href = "../../";
           return;
         }
-
+    
+        // ✅ Move provider flags here
+        const microsoftaccount = params.get("mslogin") === "true";
+        const googleaccount = params.get("glogin") === "true";
+    
         // Token is valid — make cookies
         const username = data.name;
-        const microsoftaccount = encodeURIComponent(params.get("mslogin"))
-        const googleaccount = encodeURIComponent(params.get("glogin"))
         let pictureURL = "";
-
+    
         if (data.pictureUrl && data.pictureUrl.trim() !== "") {
           pictureURL = data.pictureUrl;
         } else if (data.image_data && data.image_type) {
           pictureURL = `data:${data.image_type};base64,${data.image_data}`;
         }
-
+    
         // Create cookies (1 day)
-        const cookieLife = 86400; // seconds
+        const cookieLife = 86400;
         const cookieOptions = "; max-age=" + cookieLife + "; SameSite=None; Secure; path=/";
-
+    
         document.cookie = "username=" + encodeURIComponent(username) + cookieOptions;
         document.cookie = "picture=" + encodeURIComponent(pictureURL) + cookieOptions;
         document.cookie = "usingotheroptions=" + googleaccount + cookieOptions;
         document.cookie = "usingmicrosoftaccount=" + microsoftaccount + cookieOptions;
         document.cookie = "iniframe=false" + cookieOptions;
         document.cookie = "inapp=false" + cookieOptions;
-
+    
+        // ✅ Now set provider cookies safely
+        if (microsoftaccount) {
+          document.cookie = "provider=microsoft" + cookieOptions;
+          document.cookie = "socialtoken=" + encodeURIComponent(token) + cookieOptions;
+        } else if (googleaccount) {
+          document.cookie = "provider=google" + cookieOptions;
+          document.cookie = "socialtoken=" + encodeURIComponent(token) + cookieOptions;
+        } else {
+          document.cookie = "provider=local" + cookieOptions;
+        }
+    
         // Redirect to members page
         window.location.href = "../";
-
+    
       } catch (err) {
         console.error("Token validation failed:", err);
         alert("Error verifying login. Please try again.");
         window.location.href = "../../";
-      }
-      
-      // detect and store provider
-      if (microsoftaccount === "true") {
-        document.cookie = "provider=microsoft; max-age=86400; SameSite=None; Secure; path=/";
-        document.cookie = "socialtoken=" + encodeURIComponent(token) + cookieOptions;
-      } else if (googleaccount === "true") {
-        document.cookie = "provider=google; max-age=86400; SameSite=None; Secure; path=/";
-        document.cookie = "socialtoken=" + encodeURIComponent(token) + cookieOptions;
-      } else {
-        document.cookie = "provider=local; max-age=86400; SameSite=None; Secure; path=/";
       }
     }
   </script>
