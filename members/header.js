@@ -87,10 +87,14 @@ document.addEventListener("DOMContentLoaded", function() {
     logoutLink.appendChild(button);
     header.appendChild(logoutLink);
 
+    /*
+    
     // Modify logout link based on cookies
     if (getCookie('usingmicrosoftaccount') === 'true') {
         logoutLink.href = 'https://tsasofficial.github.io/members/microsoftlogout';
     } else if (getCookie('iniframe') === 'true') {
         logoutFont.textContent = 'End Session';
     }
+
+    */
 });
