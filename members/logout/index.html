@@ -38,7 +38,7 @@ window.addEventListener("load", () => {
     // If provider known, call PHP API to delete that user's entry
     if (provider && username) {
       try {
-        const res = await fetch("https://dominic.eu5.org/TSAS/socialLogout/", {
+        const res = await fetch("https://dominic.eu5.org/TSAS/socialLogout/index.php", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ name: username, provider })
