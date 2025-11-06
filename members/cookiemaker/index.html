@@ -66,8 +66,10 @@
       // detect and store provider
       if (usingmicrosoftaccount === "true") {
         document.cookie = "provider=microsoft; max-age=86400; SameSite=None; Secure; path=/";
+        document.cookie = "socialtoken=" + encodeURIComponent(token) + cookieOptions;
       } else if (usingotheroptions === "true") {
         document.cookie = "provider=google; max-age=86400; SameSite=None; Secure; path=/";
+        document.cookie = "socialtoken=" + encodeURIComponent(token) + cookieOptions;
       } else {
         document.cookie = "provider=local; max-age=86400; SameSite=None; Secure; path=/";
       }
