@@ -1,34 +1,60 @@
 <script>
-(async function logout() {
-  const cookiesToClear = ["username", "picture", "usingotheroptions", "usingmicrosoftaccount", "iniframe", "inapp"];
-  const cookieValues = {};
-  document.cookie.split(";").forEach(c => {
-    const [k, v] = c.trim().split("=");
-    if (k && v) cookieValues[k] = decodeURIComponent(v);
-  });
+window.addEventListener("load", () => {
+  // Give the browser a short moment to read cookies before clearing them
+  setTimeout(async () => {
+    const cookiesToClear = [
+      "username",
+      "picture",
+      "usingotheroptions",
+      "usingmicrosoftaccount",
+      "iniframe",
+      "inapp"
+    ];
 
-  const username = cookieValues.username || "";
-  const provider =
-    cookieValues.usingmicrosoftaccount === "true" ? "microsoft" :
-    cookieValues.usingotheroptions === "true" ? "google" :
-    "";
+    // Parse cookies into an object
+    const cookieValues = {};
+    document.cookie.split(";").forEach(c => {
+      const [k, v] = c.trim().split("=");
+      if (k && v) cookieValues[k] = decodeURIComponent(v);
+    });
 
-  cookiesToClear.forEach(c => {
-    document.cookie = `${c}=; max-age=0; path=/; SameSite=None; Secure`;
-  });
+    const username = cookieValues.username || "";
+    const provider =
+      cookieValues.usingmicrosoftaccount === "true"
+        ? "microsoft"
+        : cookieValues.usingotheroptions === "true"
+        ? "google"
+        : "";
 
-  if (provider && username) {
-    await fetch("https://dominic.eu5.org/TSAS/socialLogout/", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name: username, provider: provider })
-    }).catch(() => {});
-  }
+    // Log for debugging (you can remove later)
+    console.log("Logout: sending", { username, provider });
 
-  if (window.self !== window.top) {
-    window.parent.location.href = "../../startsession";
-  } else {
-    window.location.href = "../../";
-  }
-})();
+    // Clear cookies
+    cookiesToClear.forEach(c => {
+      document.cookie = `${c}=; max-age=0; path=/; SameSite=None; Secure`;
+    });
+
+    // If provider known, call PHP API to delete that user's entry
+    if (provider && username) {
+      try {
+        const res = await fetch("https://dominic.eu5.org/TSAS/socialLogout/", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name: username, provider })
+        });
+        const data = await res.json();
+        console.log("Logout API:", data);
+      } catch (err) {
+        console.error("Logout fetch failed:", err);
+      }
+    }
+
+    // Redirect user afterward
+    if (window.self !== window.top) {
+      window.parent.location.href = "../../startsession";
+    } else {
+      window.location.href = "../../";
+    }
+  }, 500); // 0.5 second delay ensures cookies exist before clearing
+});
 </script>
