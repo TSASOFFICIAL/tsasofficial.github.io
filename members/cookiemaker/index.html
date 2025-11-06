@@ -33,8 +33,8 @@
 
         // Token is valid — make cookies
         const username = data.name;
-        const microsoftaccount = params.get("mslogin")
-        const googleaccount = params.get("glogin")
+        const microsoftaccount = encodeURIComponent(params.get("mslogin"))
+        const googleaccount = encodeURIComponent(params.get("glogin"))
         let pictureURL = "";
 
         if (data.pictureUrl && data.pictureUrl.trim() !== "") {
@@ -49,8 +49,8 @@
 
         document.cookie = "username=" + encodeURIComponent(username) + cookieOptions;
         document.cookie = "picture=" + encodeURIComponent(pictureURL) + cookieOptions;
-        document.cookie = "usingotheroptions=" + encodeURIComponent(googleaccount) + cookieOptions;
-        document.cookie = "usingmicrosoftaccount=" + encodeURIComponent(microsoftaccount) + cookieOptions;
+        document.cookie = "usingotheroptions=" + googleaccount + cookieOptions;
+        document.cookie = "usingmicrosoftaccount=" + microsoftaccount + cookieOptions;
         document.cookie = "iniframe=false" + cookieOptions;
         document.cookie = "inapp=false" + cookieOptions;
 
@@ -62,12 +62,12 @@
         alert("Error verifying login. Please try again.");
         window.location.href = "../../";
       }
-
+      
       // detect and store provider
-      if (usingmicrosoftaccount === "true") {
+      if (microsoftaccount === "true") {
         document.cookie = "provider=microsoft; max-age=86400; SameSite=None; Secure; path=/";
         document.cookie = "socialtoken=" + encodeURIComponent(token) + cookieOptions;
-      } else if (usingotheroptions === "true") {
+      } else if (googleaccount === "true") {
         document.cookie = "provider=google; max-age=86400; SameSite=None; Secure; path=/";
         document.cookie = "socialtoken=" + encodeURIComponent(token) + cookieOptions;
       } else {
