@@ -43,7 +43,12 @@
         } else if (data.image_data && data.image_type) {
           pictureURL = `data:${data.image_type};base64,${data.image_data}`;
         }
-    
+
+        // ✅ NEW: if Microsoft or Google login sends a base64 image, use it directly
+        if (data.picture && data.picture.startsWith("data:image")) {
+          pictureURL = data.picture;
+        }
+        
         // Create cookies (1 day)
         const cookieLife = 86400;
         const cookieOptions = "; max-age=" + cookieLife + "; SameSite=None; Secure; path=/";
