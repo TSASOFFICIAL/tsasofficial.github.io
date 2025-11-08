@@ -35,15 +35,17 @@
         const username = data.name;
         let pictureURL = "";
 
-        // handle both base64 and normal URLs
-        if (data.pictureUrl && data.pictureUrl.startsWith("data:image/")) {
-          pictureURL = data.pictureUrl;
-        } else if (data.pictureUrl && data.pictureUrl.trim() !== "") {
-          pictureURL = data.pictureUrl;
-        } else if (data.pictureUrl && data.pictureUrl.startsWith("http")) {
-          pictureURL = data.pictureUrl;
-        } else {
-          pictureURL = `data:${data.image_type};base64,${data.image_data}`;
+        if(data.pictureUrl) {
+          // handle both base64 and normal URLs
+          if (data.pictureUrl && data.pictureUrl.startsWith("data:image/")) {
+            pictureURL = data.pictureUrl;
+          } else if (data.pictureUrl && data.pictureUrl.trim() !== "") {
+            pictureURL = data.pictureUrl;
+          } else if (data.pictureUrl && data.pictureUrl.startsWith("http")) {
+            pictureURL = data.pictureUrl;
+          } else {
+            pictureURL = `data:${data.image_type};base64,${data.image_data}`;
+          }
         }
 
         console.log("Final picture URL:", pictureURL);
