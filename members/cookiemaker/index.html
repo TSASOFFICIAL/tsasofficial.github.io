@@ -35,7 +35,9 @@
         const username = data.name;
         let pictureURL = "";
 
-        if(data.pictureUrl) {
+        console.log("data.pictureUrl: " + data.pictureUrl)
+        
+        if(data.pictureUrl !== "") {
           // handle both base64 and normal URLs
           if (data.pictureUrl && data.pictureUrl.startsWith("data:image/")) {
             pictureURL = data.pictureUrl;
