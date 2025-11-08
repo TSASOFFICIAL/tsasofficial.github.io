@@ -40,7 +40,9 @@
           pictureURL = data.pictureUrl;
         } else if (data.pictureUrl && data.pictureUrl.trim() !== "") {
           pictureURL = data.pictureUrl;
-        } else if (data.image_data && data.image_type) {
+        } else if (data.pictureUrl && data.pictureUrl.startsWith("http")) {
+          pictureURL = data.pictureUrl;
+        } else {
           pictureURL = `data:${data.image_type};base64,${data.image_data}`;
         }
 
@@ -49,7 +51,7 @@
         // cookie life 1 day
         const cookieOptions = "; max-age=86400; SameSite=None; Secure; path=/";
         document.cookie = "username=" + encodeURIComponent(username) + cookieOptions;
-        document.cookie = "picture=" + pictureURL + cookieOptions;
+        document.cookie = "picture=" + encodeURIComponent(pictureURL) + cookieOptions;
         document.cookie = "usingotheroptions=" + isGoogle + cookieOptions;
         document.cookie = "usingmicrosoftaccount=" + isMicrosoft + cookieOptions;
         document.cookie = "iniframe=false" + cookieOptions;
