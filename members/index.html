@@ -35,7 +35,7 @@
             let pictureCookie = getCookie("picture");
 			// Handle Base64-encoded data URLs safely
 			try {
-			  let pictureValue = decodeURIComponent(getCookie("picture"));
+			  let pictureValue = getCookie("picture");
 			
 			  if (pictureValue.startsWith("data:image")) {
 			    // It's already a data URL → just assign it
@@ -50,12 +50,6 @@
 			  console.error("Error decoding base64 image:", err);
 			  document.getElementById("profilePicture").src = "../images/DefaultProfilePicture.png";
 			}
-
-            if (pictureCookie === null || pictureCookie === "" || pictureCookie === "null" || pictureCookie === "undefined") {
-              element.setAttribute("src", "../images/DefaultProfilePicture.png");
-            } else {
-              element.setAttribute("src", getCookie("picture"));
-            };
 	    
     	    const profileimg = document.getElementById("profilePicture");
     	    if (profileimg) {
