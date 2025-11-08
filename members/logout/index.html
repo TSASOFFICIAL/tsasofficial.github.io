@@ -23,6 +23,7 @@ window.addEventListener("load", () => {
     const isMicrosoft = cookieValues.usingmicrosoftaccount === "true";
     const isGoogle = cookieValues.usingotheroptions === "true";
     const provider = isMicrosoft ? "microsoft" : isGoogle ? "google" : "";
+    const token = cookieValues.socialtoken || "";
 
     console.log("Logout: sending", { username, provider });
 
@@ -32,19 +33,17 @@ window.addEventListener("load", () => {
     });
 
     // Inform your backend
-    if (provider && username) {
-      try {
-        const res = await fetch("https://dominic.eu5.org/TSAS/socialLogout/index.php", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ name: username, provider })
-        });
-        console.log("Logout API:", await res.json());
-      } catch (err) {
-        console.error("Logout fetch failed:", err);
-      }
-    }
-
+    console.log("Logout: sending", { username, provider });
+    
+    fetch("https://dominic.eu5.org/TSAS/logout/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, provider, token })
+    })
+    .then(r => r.json())
+    .then(d => console.log("Logout response:", d))
+    .catch(err => console.error("Logout fetch failed:", err));
+    
     // If user used Microsoft login, also clear Microsoft session
     if (isMicrosoft) {
       console.log("Redirecting to Microsoft logout...");
