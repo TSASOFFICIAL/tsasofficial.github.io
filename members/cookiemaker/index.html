@@ -31,7 +31,8 @@
             window.location.href = "../../";
             return;
           }
-  
+          
+          const provider = isMicrosoft ? "microsoft" : isGoogle ? "google" : "local";
           const username = data.name;
           const pictureURL = data.pictureUrl;
   
@@ -45,11 +46,12 @@
           document.cookie = "usingmicrosoftaccount=" + isMicrosoft + cookieOptions;
           document.cookie = "iniframe=false" + cookieOptions;
           document.cookie = "inapp=false" + cookieOptions;
-  
-          // record provider and token
-          const provider = isMicrosoft ? "microsoft" : isGoogle ? "google" : "local";
           document.cookie = "provider=" + provider + cookieOptions;
-          document.cookie = "socialtoken=" + encodeURIComponent(token) + cookieOptions;
+          if (!provider) {
+            document.cookie = "token=" + encodeURIComponent(token) + cookieOptions;
+          } else if (provider) {
+            document.cookie = "socialtoken=" + encodeURIComponent(token) + cookieOptions;
+          }
           
           window.location.href = "../";
         } catch (err) {
