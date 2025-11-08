@@ -24,8 +24,13 @@
       // Clear client cookies regardless
       const clear = name => document.cookie = `${name}=; max-age=0; SameSite=None; Secure; path=/`;
       ["username","picture","usingotheroptions","usingmicrosoftaccount","iniframe","inapp","provider","socialtoken","token"].forEach(clear);
-      // Redirect home
-      location.href = "../../";
+
+      if (provider == 'microsoft') {
+        location.href = "https://login.microsoftonline.com/common/oauth2/v2.0/logout?post_logout_redirect_uri=https://tsasofficial.github.io";
+      } else {
+        // Redirect home
+        location.href = "../../";
+      }
     }
   }, 300);
 </script>
