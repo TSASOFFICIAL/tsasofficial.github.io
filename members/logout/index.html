@@ -23,7 +23,7 @@
     } finally {
       // Clear client cookies regardless
       const clear = name => document.cookie = `${name}=; max-age=0; SameSite=None; Secure; path=/`;
-      ["username","picture","usingotheroptions","usingmicrosoftaccount","iniframe","inapp","provider","socialtoken"].forEach(clear);
+      ["username","picture","usingotheroptions","usingmicrosoftaccount","iniframe","inapp","provider","socialtoken","token"].forEach(clear);
       // Redirect home
       location.href = "../../";
     }
