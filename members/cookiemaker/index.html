@@ -62,7 +62,9 @@
         document.cookie = "usingmicrosoftaccount=" + microsoftaccount + cookieOptions;
         document.cookie = "iniframe=false" + cookieOptions;
         document.cookie = "inapp=false" + cookieOptions;
-    
+
+        sessionStorage.setItem("profilePicture", pictureURL);
+        
         // ✅ Now set provider cookies safely
         if (microsoftaccount) {
           document.cookie = "provider=microsoft" + cookieOptions;
