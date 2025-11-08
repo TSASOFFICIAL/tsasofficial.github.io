@@ -6,15 +6,14 @@
   setTimeout(async () => {
     const username = decodeURIComponent(getCookie("username"));
     const provider = (getCookie("provider") || "local").toLowerCase();
-    const token = decodeURIComponent(getCookie("sessiontoken") || "");
-
-    console.log("Logout: sending", { username, provider, token });
+    const token = decodeURIComponent(getCookie("token") || "");
+    const socialtoken = decodeURIComponent(getCookie("socialtoken") || "");
 
     try {
       const res = await fetch("https://dominic.eu5.org/TSAS/logout/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, provider, token })
+        body: JSON.stringify({ username, provider, token, socialtoken })
       });
       const data = await res.json();
       console.log("Logout response:", data);
