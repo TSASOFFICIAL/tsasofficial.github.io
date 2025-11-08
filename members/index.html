@@ -33,13 +33,7 @@
           <script type="text/javascript">
 			let pictureValue = getCookie("picture");
 			const picFromSession = sessionStorage.getItem("profilePicture");
-
-			if (picFromSession) {
-			  document.getElementById("profilePicture").src = picFromSession;
-			} else {
-			  document.getElementById("profilePicture").src = pictureValue;
-			}
-
+			document.getElementById("profilePicture").src = pictureValue;
 			if (!pictureValue) {
 			  document.getElementById("profilePicture").src = "../images/DefaultProfilePicture.png";
 			}
