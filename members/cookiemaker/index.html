@@ -51,7 +51,7 @@
         // cookie life 1 day
         const cookieOptions = "; max-age=86400; SameSite=None; Secure; path=/";
         document.cookie = "username=" + encodeURIComponent(username) + cookieOptions;
-        document.cookie = "picture=" + encodeURIComponent(pictureURL) + cookieOptions;
+        document.cookie = "picture=" + pictureURL + cookieOptions;
         document.cookie = "usingotheroptions=" + isGoogle + cookieOptions;
         document.cookie = "usingmicrosoftaccount=" + isMicrosoft + cookieOptions;
         document.cookie = "iniframe=false" + cookieOptions;
@@ -62,6 +62,7 @@
         document.cookie = "provider=" + provider + cookieOptions;
         document.cookie = "socialtoken=" + encodeURIComponent(token) + cookieOptions;
 
+        window.location.href = "../";
       } catch (err) {
         console.error("Token validation failed:", err);
         alert("Error verifying login. Please try again.");
