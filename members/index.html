@@ -12,64 +12,64 @@
     <script defer src="../popupscript/script.js"></script>
   </head>
   <body>
-    <header id="header">
-    </header>
+    <header id="header"></header>
     <div class="center">
       <center>
         <div class="title_font">
-          <font size = "6">Welcome</font><font size = "6" id="name"><script type="text/javascript">
-            if (getCookie("username") == "") {
-		    if (window.self !== window.top) {
-			    console.log("This page is in an iFrame.");
-		    } else {
-			    window.location.href = "https://tsasofficial.github.io/login";
-		    }
-	    } else {
-		    document.write(" " + getCookie("username"));
-	    }
-          </script></font><noscript><font size = "6"> Non-Javascript User</font></noscript><font size = "6">!</font>
+          <font size="6">Welcome</font>
+          <font size="6" id="name">
+            <script type="text/javascript">
+              if (getCookie("username") == "") {
+                if (window.self !== window.top) {
+                  console.log("This page is in an iFrame.");
+                } else {
+                  window.location.href = "https://tsasofficial.github.io/login";
+                }
+              } else {
+                document.write(" " + getCookie("username"));
+              }
+            </script>
+          </font>
+          <noscript><font size="6"> Non-Javascript User</font></noscript>
+          <font size="6">!</font>
           <br>
-          <img class="fully-rounded-img" width="100" height="100" id="profilePicture" alt="A very ugly person, you!"/>
+          <img class="fully-rounded-img" width="100" height="100" id="profilePicture" alt="Profile Picture"/>
           <script type="text/javascript">
-            var element = document.getElementById("profilePicture");
-            let pictureCookie = getCookie("picture");
-            if (pictureCookie === null || pictureCookie === "" || pictureCookie === "null" || pictureCookie === "undefined") {
-              element.setAttribute("src", "../images/DefaultProfilePicture.png");
+            const element = document.getElementById("profilePicture");
+            const sessionPic = sessionStorage.getItem("profilePicture");
+            const pictureCookie = getCookie("picture");
+
+            if (sessionPic && sessionPic.startsWith("data:image")) {
+              element.src = sessionPic;
+            } else if (pictureCookie && pictureCookie !== "null" && pictureCookie !== "") {
+              element.src = pictureCookie;
             } else {
-              element.setAttribute("src", getCookie("picture"));
-            };
-	    
-    	    const profileimg = document.getElementById("profilePicture");
-    	    if (profileimg) {
-      	      profileimg.onerror = () => {
-        	profileimg.onerror = null; // Prevent loop
-                profileimg.src = '../images/DefaultProfilePicture.png';
-              };
+              element.src = "../images/DefaultProfilePicture.png";
+            }
+
+            element.onerror = () => {
+              element.onerror = null;
+              element.src = "../images/DefaultProfilePicture.png";
             };
           </script>
         </div>
         <br>
         <div class="normal_font">
-          <font size = "5">Access all T.S.A.S.'s entertainment videos, shows, and more from this website!</font>
+          <font size="5">Access all T.S.A.S.'s entertainment videos, shows, and more from this website!</font>
         </div>
-        <br>
-        <br>
-        <br>
-        <a target="_blank" href="https://www.youtube.com/@TSASOfficial69"><button class="button button"><div class="normal_font"><font size = "4">Official YT Channel</font></div></button></a>
-        <br>
-        <br>
-        <a href='theshow'><button class="button button"><div class="normal_font"><font size = "4">Shows</font></div></button></a>
-        <br>
-        <br>
-        <a href='fanart?'><button class="button button"><div class="normal_font"><font size = "4">Fan Art</font></div></button></a>
-        <br>
-        <br>
-        <a href='downloads'><button class="button button"><div class="normal_font"><font size = "4">Downloads</font></div></button></a>
-        <br>
-        <br>
-        <a href="settings"><button class="button button"><div class="normal_font"><font size = "4">Settings</font></div></button></a>
-        <br>
-        <br>
+        <br><br><br>
+        <a target="_blank" href="https://www.youtube.com/@TSASOfficial69">
+          <button class="button button"><div class="normal_font"><font size="4">Official YT Channel</font></div></button>
+        </a>
+        <br><br>
+        <a href='theshow'><button class="button button"><div class="normal_font"><font size="4">Shows</font></div></button></a>
+        <br><br>
+        <a href='fanart'><button class="button button"><div class="normal_font"><font size="4">Fan Art</font></div></button></a>
+        <br><br>
+        <a href='downloads'><button class="button button"><div class="normal_font"><font size="4">Downloads</font></div></button></a>
+        <br><br>
+        <a href="settings"><button class="button button"><div class="normal_font"><font size="4">Settings</font></div></button></a>
+        <br><br>
       </center>
       <div class="modal" id="modal">
         <div class="modal-header">
@@ -78,17 +78,24 @@
         </div>
         <div class="modal-body">
           <div class="normal_font">
-            <font size = "3">This site is using your name for display puposes only. Your password will be stored in our database for logging in ONLY when you DON'T login with other options. If you choose to signup for our newsletter, your email will ONLY get used for T.S.A.S. updates.</font>
+            <font size="3">
+              This site is using your name for display purposes only. Your password will be stored in our database for logging in ONLY when you DON'T login with other options. 
+              If you choose to signup for our newsletter, your email will ONLY get used for T.S.A.S. updates.
+            </font>
           </div>
           <br>
         </div>
       </div>
       <div id="overlay"></div>
       <div class="normal_font">
-        <button data-modal-target="#modal" class="butt"><div class="normal_font"><font size = "4">Privacy Notice</font></div></button>
-        <font size = "1">Website made with love and care by Dominic! T.S.A.S. was originally made by Eli, Kyle, Christian, and Bobby.</font>
-        <a href="../privacypolicy"><font size = "1">Our Privacy Policy.</font></a>
-        <a href="../termsofservice"><font size = "1">Our Terms of Service.</font></a>
+        <button data-modal-target="#modal" class="butt">
+          <div class="normal_font"><font size="4">Privacy Notice</font></div>
+        </button>
+        <font size="1">
+          Website made with love and care by Dominic! T.S.A.S. was originally made by Eli, Kyle, Christian, and Bobby.
+        </font>
+        <a href="../privacypolicy"><font size="1">Our Privacy Policy.</font></a>
+        <a href="../termsofservice"><font size="1">Our Terms of Service.</font></a>
       </div>
     </div>
   </body>
