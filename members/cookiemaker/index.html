@@ -1,87 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Loading...</title>
-    <link rel="stylesheet" type="text/css" href="../../style.css" />
-    <link rel="shortcut icon" type="image/png" href="../../images/favicon.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Angkor&family=Belanosima&display=swap" rel="stylesheet" />
-    <script>
-      async function onload() {
-        const params = new URLSearchParams(window.location.search);
-        const token = params.get("token");
+<head>
+  <meta charset="UTF-8">
+  <title>Loading...</title>
+  <link rel="stylesheet" type="text/css" href="../../style.css">
+  <link rel="shortcut icon" type="image/png" href="../../images/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Angkor&family=Belanosima&display=swap" rel="stylesheet">
 
-        if (!token) {
-          alert("You must log in first.");
+  <script>
+    async function onload() {
+      const params = new URLSearchParams(window.location.search);
+      const token = params.get("token");
+      const isGoogle = params.get("glogin") === "true";
+      const isMicrosoft = params.get("mslogin") === "true";
+
+      if (!token) {
+        alert("You must log in first.");
+        window.location.href = "../../";
+        return;
+      }
+
+      try {
+        const response = await fetch(`https://dominic.eu5.org/TSAS/validateToken/?token=${encodeURIComponent(token)}`);
+        const data = await response.json();
+
+        if (!data.valid) {
+          alert("Invalid or expired login session. Please log in again.");
           window.location.href = "../../";
           return;
         }
 
-        try {
-          const response = await fetch(`https://dominic.eu5.org/TSAS/validateToken/?token=${encodeURIComponent(token)}`);
-          const data = await response.json();
+        const username = data.name;
+        let pictureURL = "";
 
-          if (!data.valid) {
-            alert("Invalid or expired login session. Please log in again.");
-            window.location.href = "../../";
-            return;
-          }
-
-          const username = data.name;
-          const microsoftaccount = encodeURIComponent(params.get("mslogin"));
-          const googleaccount = encodeURIComponent(params.get("glogin"));
-          let pictureURL = "";
-
-          if (data.pictureUrl && data.pictureUrl.trim() !== "") {
-            pictureURL = data.pictureUrl;
-          } else if (data.image_data && data.image_type) {
-            pictureURL = `data:${data.image_type};base64,${data.image_data}`;
-          }
-
-          // Set cookies (so GitHub pages can still read)
-          const cookieLife = 86400;
-          const cookieOptions = "; max-age=" + cookieLife + "; SameSite=None; Secure; path=/";
-
-          document.cookie = "username=" + encodeURIComponent(username) + cookieOptions;
-          document.cookie = "picture=" + encodeURIComponent(pictureURL) + cookieOptions;
-          document.cookie = "usingotheroptions=" + googleaccount + cookieOptions;
-          document.cookie = "usingmicrosoftaccount=" + microsoftaccount + cookieOptions;
-          document.cookie = "iniframe=false" + cookieOptions;
-          document.cookie = "inapp=false" + cookieOptions;
-
-          // ✅ Store PFP separately (more reliable for base64)
-          sessionStorage.setItem("profilePicture", pictureURL);
-
-          // Provider cookies
-          if (microsoftaccount === "true") {
-            document.cookie = "provider=microsoft" + cookieOptions;
-            document.cookie = "socialtoken=" + encodeURIComponent(token) + cookieOptions;
-          } else if (googleaccount === "true") {
-            document.cookie = "provider=google" + cookieOptions;
-            document.cookie = "socialtoken=" + encodeURIComponent(token) + cookieOptions;
-          } else {
-            document.cookie = "provider=local" + cookieOptions;
-          }
-
-          window.location.href = "../";
-        } catch (err) {
-          console.error("Token validation failed:", err);
-          alert("Error verifying login. Please try again.");
-          window.location.href = "../../";
+        // handle both base64 and normal URLs
+        if (data.pictureUrl && data.pictureUrl.startsWith("data:image/")) {
+          pictureURL = data.pictureUrl;
+        } else if (data.pictureUrl && data.pictureUrl.trim() !== "") {
+          pictureURL = data.pictureUrl;
+        } else if (data.image_data && data.image_type) {
+          pictureURL = `data:${data.image_type};base64,${data.image_data}`;
         }
+
+        console.log("Final picture URL:", pictureURL);
+
+        // cookie life 1 day
+        const cookieOptions = "; max-age=86400; SameSite=None; Secure; path=/";
+        document.cookie = "username=" + encodeURIComponent(username) + cookieOptions;
+        document.cookie = "picture=" + encodeURIComponent(pictureURL) + cookieOptions;
+        document.cookie = "usingotheroptions=" + isGoogle + cookieOptions;
+        document.cookie = "usingmicrosoftaccount=" + isMicrosoft + cookieOptions;
+        document.cookie = "iniframe=false" + cookieOptions;
+        document.cookie = "inapp=false" + cookieOptions;
+
+        // record provider and token
+        const provider = isMicrosoft ? "microsoft" : isGoogle ? "google" : "local";
+        document.cookie = "provider=" + provider + cookieOptions;
+        document.cookie = "socialtoken=" + encodeURIComponent(token) + cookieOptions;
+
+        window.location.href = "../";
+      } catch (err) {
+        console.error("Token validation failed:", err);
+        alert("Error verifying login. Please try again.");
+        window.location.href = "../../";
       }
-    </script>
-  </head>
-  <body onload="onload()">
-    <div class="center">
-      <div class="title_font">
-        <font size="6">Validating login...</font>
-      </div>
-      <div class="normal_font">
-        <font size="4">Please wait while we verify your session.</font>
-      </div>
+    }
+  </script>
+</head>
+
+<body onload="onload()">
+  <div class="center">
+    <div class="title_font">
+      <font size="6">Validating login...</font>
     </div>
-  </body>
+    <div class="normal_font">
+      <font size="4">Please wait while we verify your session.</font>
+    </div>
+  </div>
+</body>
 </html>
