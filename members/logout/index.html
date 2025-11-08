@@ -1,65 +1,31 @@
 <script>
-window.addEventListener("load", () => {
+  function getCookie(name) {
+    return document.cookie.split(';').map(s=>s.trim()).find(x=>x.startsWith(name+'='))?.split('=')[1] || '';
+  }
+
   setTimeout(async () => {
-    const cookiesToClear = [
-      "username",
-      "picture",
-      "usingotheroptions",
-      "usingmicrosoftaccount",
-      "iniframe",
-      "inapp",
-      "provider",
-      "socialtoken"
-    ];
+    const username = decodeURIComponent(getCookie("username"));
+    const provider = (getCookie("provider") || "local").toLowerCase();
+    const token = decodeURIComponent(getCookie("sessiontoken") || "");
 
-    // Parse cookies into an object
-    const cookieValues = {};
-    document.cookie.split(";").forEach(c => {
-      const [k, v] = c.trim().split("=");
-      if (k && v) cookieValues[k] = decodeURIComponent(v);
-    });
+    console.log("Logout: sending", { username, provider, token });
 
-    const username = cookieValues.username || "";
-    const isMicrosoft = cookieValues.usingmicrosoftaccount === "true";
-    const isGoogle = cookieValues.usingotheroptions === "true";
-    const provider = isMicrosoft ? "microsoft" : isGoogle ? "google" : "";
-    const token = cookieValues.socialtoken || "";
-
-    console.log("Logout: sending", { username, provider });
-
-    // Clear cookies
-    cookiesToClear.forEach(c => {
-      document.cookie = `${c}=; max-age=0; path=/; SameSite=None; Secure`;
-    });
-
-    // Inform your backend
-    console.log("Logout: sending", { username, provider });
-    
-    fetch("https://dominic.eu5.org/TSAS/logout/", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, provider, token })
-    })
-    .then(r => r.json())
-    .then(d => console.log("Logout response:", d))
-    .catch(err => console.error("Logout fetch failed:", err));
-    
-    // If user used Microsoft login, also clear Microsoft session
-    if (isMicrosoft) {
-      console.log("Redirecting to Microsoft logout...");
-      // Redirect to Microsoft’s logout endpoint first
-      window.location.href =
-        "https://login.microsoftonline.com/common/oauth2/v2.0/logout?post_logout_redirect_uri=" +
-        encodeURIComponent("https://tsasofficial.github.io/");
-      return; // Stop here — redirection will handle rest
+    try {
+      const res = await fetch("https://dominic.eu5.org/TSAS/logout/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, provider, token })
+      });
+      const data = await res.json();
+      console.log("Logout response:", data);
+    } catch (e) {
+      console.error("Logout fetch failed:", e);
+    } finally {
+      // Clear client cookies regardless
+      const clear = name => document.cookie = `${name}=; max-age=0; SameSite=None; Secure; path=/`;
+      ["username","picture","usingotheroptions","usingmicrosoftaccount","iniframe","inapp","provider","sessiontoken"].forEach(clear);
+      // Redirect home
+      location.href = "../../";
     }
-
-    // Normal redirect for other providers
-    if (window.self !== window.top) {
-      window.parent.location.href = "../../startsession";
-    } else {
-      window.location.href = "../../";
-    }
-  }, 500);
-});
+  }, 300);
 </script>
