@@ -32,23 +32,15 @@
           <img class="fully-rounded-img" width="100" height="100" id="profilePicture" alt="A very ugly person, you!"/>
           <script type="text/javascript">
 			let pictureValue = getCookie("picture");
-			// Handle Base64-encoded data URLs safely
-			try {
-			  if (pictureValue.startsWith("data:image")) {
-			    // It's already a data URL → just assign it
-			    document.getElementById("profilePicture").src = pictureValue;
-			  } else if (pictureValue.trim() !== "") {
-			    // Might be an encoded base64 string without prefix → decode it manually
-			    const img = new Image();
-			    img.src = "data:image/png;base64," + pictureValue;
-			    document.getElementById("profilePicture").src = img.src;
-			  }
-			} catch (err) {
-			  console.error("Error decoding base64 image:", err);
-			  document.getElementById("profilePicture").src = "../images/DefaultProfilePicture.png";
+			const picFromSession = sessionStorage.getItem("profilePicture");
+
+			if (picFromSession) {
+			  document.getElementById("profilePicture").src = picFromSession;
+			} else {
+			  document.getElementById("profilePicture").src = pictureValue;
 			}
 
-			if (!pictureValue){
+			if (!pictureValue) {
 			  document.getElementById("profilePicture").src = "../images/DefaultProfilePicture.png";
 			}
           </script>
