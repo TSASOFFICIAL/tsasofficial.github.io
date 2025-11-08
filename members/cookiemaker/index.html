@@ -47,9 +47,9 @@
           document.cookie = "iniframe=false" + cookieOptions;
           document.cookie = "inapp=false" + cookieOptions;
           document.cookie = "provider=" + provider + cookieOptions;
-          if (!provider) {
+          if (provider == 'local') {
             document.cookie = "token=" + encodeURIComponent(token) + cookieOptions;
-          } else if (provider) {
+          } else {
             document.cookie = "socialtoken=" + encodeURIComponent(token) + cookieOptions;
           }
           
