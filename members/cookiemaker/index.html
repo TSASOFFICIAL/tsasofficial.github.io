@@ -38,14 +38,17 @@
         const username = data.name;
         let pictureURL = "";
     
+        // Handle profile picture from different formats
         if (data.pictureUrl && data.pictureUrl.trim() !== "") {
-          pictureURL = data.pictureUrl;
+          // If the URL itself is base64 data (starts with "data:image"), use as-is
+          if (data.pictureUrl.startsWith("data:image")) {
+            pictureURL = data.pictureUrl;
+          } else {
+            pictureURL = data.pictureUrl.trim();
+          }
         } else if (data.image_data && data.image_type) {
           pictureURL = `data:${data.image_type};base64,${data.image_data}`;
-        }
-
-        // ✅ NEW: if Microsoft or Google login sends a base64 image, use it directly
-        if (data.picture && data.picture.startsWith("data:image")) {
+        } else if (data.picture && data.picture.startsWith("data:image")) {
           pictureURL = data.picture;
         }
         
