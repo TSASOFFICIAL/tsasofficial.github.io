@@ -60,7 +60,10 @@
         document.cookie = "provider=" + provider + cookieOptions;
         document.cookie = "socialtoken=" + encodeURIComponent(token) + cookieOptions;
 
-        window.location.href = "../";
+        // wait before redirecting
+        setTimeout(() => {
+          window.location.href = "../";
+        }, 200);
       } catch (err) {
         console.error("Token validation failed:", err);
         alert("Error verifying login. Please try again.");
